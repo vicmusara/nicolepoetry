@@ -57,7 +57,7 @@ export function MobileMenu() {
                                 <ul className="flex w-full flex-col">
                                     <li className="py-2 text-xl text-sidebar-foreground transition-colors hover:text-sidebar-primary">
                                         <Link
-                                            href="/poetry"
+                                            href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe"
                                             onClick={closeMobileMenu}
                                         >
                                             Poetry
@@ -65,7 +65,7 @@ export function MobileMenu() {
                                     </li>
                                     <li className="py-2 text-xl text-sidebar-foreground transition-colors hover:text-sidebar-primary">
                                         <Link
-                                            href="/explore"
+                                            href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe"
                                             onClick={closeMobileMenu}
                                         >
                                             Explore
@@ -73,7 +73,7 @@ export function MobileMenu() {
                                     </li>
                                     <li className="py-2 text-xl text-sidebar-foreground transition-colors hover:text-sidebar-primary">
                                         <Link
-                                            href="/shop"
+                                            href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe"
                                             onClick={closeMobileMenu}
                                         >
                                             Shop

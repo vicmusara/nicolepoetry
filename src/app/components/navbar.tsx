@@ -16,13 +16,13 @@ export function Navbar() {
                         </Link>
 
                         <div className="hidden md:flex items-center space-x-8">
-                            <Link href="/poetry" className="text-muted-foreground hover:text-primary-foreground transition-colors">
+                            <Link href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe" className="text-muted-foreground hover:text-primary-foreground transition-colors">
                                 Poetry
                             </Link>
-                            <Link href="/explore" className="text-muted-foreground hover:text-primary-foreground transition-colors">
+                            <Link href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe" className="text-muted-foreground hover:text-primary-foreground transition-colors">
                                 Explore
                             </Link>
-                            <Link href="/shop" className="text-muted-foreground hover:text-primary-foreground transition-colors">
+                            <Link href="https://www.takealot.com/all?filter=Author:Nicole+Kazembe" className="text-muted-foreground hover:text-primary-foreground transition-colors">
                                 Shop
                             </Link>
                             <button className="bg-primary-foreground text-primary px-4 py-2 rounded-lg hover:bg-primary/90 hover:text-primary-foreground transition-colors">
