@@ -5,6 +5,7 @@ import {ArrowUpRightIcon} from "@heroicons/react/24/outline";
 import {Navbar} from "@/app/components/navbar";
 import HeroCard from "@/app/components/hero-card";
 
+
 export default function page(): ReactElement{
   return (
   <div className="flex flex-col items-center">
