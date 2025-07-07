@@ -9,7 +9,7 @@ export const QuizBlock: Block = {
   fields: [
     {
       name: "title",
-      label: "Titel",
+      label: "Title",
       type: "text",
       required: true,
     },
