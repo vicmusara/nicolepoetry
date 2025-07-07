@@ -6,6 +6,7 @@ import {ArrowUpRightIcon} from "@heroicons/react/24/outline";
 
 import {Navbar} from "@/app/components/navbar";
 import HeroCard from "@/app/components/hero-card";
+import {DailyPrompt} from "@/app/components/daily-prompt";
 
 
 export default function page(): ReactElement{
@@ -51,6 +52,7 @@ export default function page(): ReactElement{
         </div>
       </div>
     </div>
+      <DailyPrompt/>
   </div>
   )
 }

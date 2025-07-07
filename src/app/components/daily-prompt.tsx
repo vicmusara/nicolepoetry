@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+
 import { Lightbulb, RefreshCw, Copy, Calendar, Sparkles } from "lucide-react"
 import { toast } from "sonner"
+import {Badge} from "@/app/components/ui/badge";
+import {Button} from "@/app/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/app/components/ui/card";
 
 interface DailyPromptData {
     date: string
@@ -118,7 +119,7 @@ export function DailyPrompt() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-gray-600">Unable to load today's prompt.</p>
+                    <p className="text-gray-600">Unable to load today&apos;s prompt.</p>
                     <Button variant="outline" onClick={handleTryAgain} className="mt-4">
                         Try Again
                     </Button>
