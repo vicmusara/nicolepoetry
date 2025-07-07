@@ -9,7 +9,7 @@ import sharp from 'sharp'
 
 
 import { Media } from './collections/Media'
-import {Users} from "@/collections/Users";
+import {Users} from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
