@@ -6,15 +6,14 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
-
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
-
 import brevoAdapter from './utils/brevoAdapter'
-import { Customers } from './collections/Customers'
-import { Courses } from './collections/Courses/Courses'
-import { Participation } from './collections/Courses/Participation'
-import { s3Storage } from '@payloadcms/storage-s3'
+import {Users} from "@/collections/Users";
+import {Media} from "@/collections/Media";
+import {Customers} from "@/collections/Customers";
+import {Courses} from "@/collections/Courses/Courses";
+import {Participation} from "@/collections/Courses/Participation";
+import {s3Storage} from "@payloadcms/storage-s3";
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
