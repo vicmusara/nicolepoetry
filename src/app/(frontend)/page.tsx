@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {ArrowUpRightIcon} from "@heroicons/react/24/outline";
+
+
 import {Navbar} from "@/app/components/navbar";
 import HeroCard from "@/app/components/hero-card";
 

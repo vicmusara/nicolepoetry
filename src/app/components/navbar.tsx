@@ -2,8 +2,9 @@
 import Link from "next/link";
 import {HeartIcon} from "@heroicons/react/24/outline";
 import {MobileMenu} from "@/app/components/mobile-menu";
+import React from "react";
 
-export function Navbar() {
+export function Navbar(): React.ReactElement {
 
     return (
         <header className="max-w-3xl top-0 z-50 w-full border-b border-border">
