@@ -14,6 +14,7 @@ import { BookTiles } from '@/blocks/BookTiles/Component'
 import { BookSigning } from '@/blocks/BooksSigning/Component'
 import AboutAuthor from '@/blocks/AboutAuthor/Component'
 import Testimonials from '@/blocks/Testimonials/Component'
+import { Newsletter } from '@/blocks/Newsletter/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -27,7 +28,8 @@ const blockComponents = {
   bookTiles: BookTiles,
   bookSigning: BookSigning,
   aboutAuthor: AboutAuthor,
-  testimonials: Testimonials
+  testimonials: Testimonials,
+  newsletter: Newsletter
 }
 
 export const RenderBlocks: React.FC<{
@@ -48,7 +50,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-12" key={index}>
+                <div className="my-12 p-0" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

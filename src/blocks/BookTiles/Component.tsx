@@ -10,7 +10,7 @@ import Heading from '@/components/ui/heading'
 
 export const BookTiles: React.FC<BookTilesProps> = ({ title, viewAllLink, books }) => {
   return (
-    <section className="py-0 mt-0 px-6">
+    <section id="#books" className="py-0 mt-0 px-6">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between md:items-center mb-16">
           { title && (

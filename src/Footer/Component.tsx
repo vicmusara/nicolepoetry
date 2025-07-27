@@ -45,7 +45,7 @@ export async function Footer() {
 
   return (
     <footer>
-      <div className="mx-auto max-w-7xl px-6 py-20">
+      <div className="mx-auto max-w-7xl px-6 pt-0 pb-10">
         <div className="flex flex-col items-center gap-10 border-b border-b-border pb-10 lg:flex-row lg:justify-between lg:gap-4">
 
           {/* Navigation */}

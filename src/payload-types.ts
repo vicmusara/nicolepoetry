@@ -211,6 +211,7 @@ export interface Page {
     | BookSigningBlock
     | AboutAuthorBlock
     | TestimonialsBlock
+    | NewsletterBlock
   )[];
   meta?: {
     title?: string | null;
@@ -865,6 +866,17 @@ export interface TestimonialsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterBlock".
+ */
+export interface NewsletterBlock {
+  heading: string;
+  buttonLabel: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletter';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1164,6 +1176,7 @@ export interface PagesSelect<T extends boolean = true> {
         bookSigning?: T | BookSigningBlockSelect<T>;
         aboutAuthor?: T | AboutAuthorBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
+        newsletter?: T | NewsletterBlockSelect<T>;
       };
   meta?:
     | T
@@ -1329,6 +1342,16 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         bookOrderLink?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterBlock_select".
+ */
+export interface NewsletterBlockSelect<T extends boolean = true> {
+  heading?: T;
+  buttonLabel?: T;
   id?: T;
   blockName?: T;
 }

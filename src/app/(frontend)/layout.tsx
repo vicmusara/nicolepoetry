@@ -10,20 +10,18 @@ import './global.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-
-
   return (
     <html lang="en" suppressHydrationWarning>
-    <head>
-      <link href="/favicon.ico" rel="icon" sizes="32x32" />
-      <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-      <title>My Payload Site</title>
-    </head>
-    <body>
-      <Header />
-      {children}
-      <Footer />
-    </body>
+      <head>
+        <link href="/favicon.ico" rel="icon" sizes="32x32" />
+        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <title>My Payload Site</title>
+      </head>
+      <body className="font-[Arial,Helvetica,sans-serif]">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }

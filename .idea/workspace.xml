@@ -5,147 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Home page almost done">
-      <change afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.client.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page.client.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.client.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/AboutAuthor/Component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/AboutAuthor/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/BookTiles/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/BooksSigning/Component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/BooksSigning/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/Testimonials/Component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/Testimonials/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collections/Stories/hooks/populateAuthors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collections/Stories/hooks/revalidatePost.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collections/Stories/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/heading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/Newsletter/Component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/Newsletter/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components.json" beforeDir="false" afterPath="$PROJECT_DIR$/components.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-sitemap.config.cjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/website-template-OG.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/redirects.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Footer/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Footer/RowLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/RowLabel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Footer/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Header/Component.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/Component.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Header/Nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/Nav/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Header/RowLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/RowLabel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/(sitemaps)/pages-sitemap.xml/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/(sitemaps)/posts-sitemap.xml/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/globals.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/next/exit-preview/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/next/preview/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/next/seed/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/not-found.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/[slug]/page.client.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/[slug]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/page.client.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/page/[pageNumber]/page.client.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/posts/page/[pageNumber]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/search/page.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/search/page.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(payload)/api/[...slug]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(payload)/api/[...slug]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/ArchiveBlock/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ArchiveBlock/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/CallToAction/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CallToAction/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/CallToAction/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CallToAction/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/Content/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Content/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/Form/Select/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Form/Select/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/RelatedPosts/Component.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/BooksSigning/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BooksSigning/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blocks/RenderBlocks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RenderBlocks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Categories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Categories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Media.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Media.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/Testimonials/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Testimonials/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/collections/Pages/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Pages/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Posts/hooks/populateAuthors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Posts/hooks/revalidatePost.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Posts/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Users/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminBar/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminBar/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BeforeDashboard/SeedButton/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BeforeDashboard/SeedButton/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BeforeDashboard/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BeforeDashboard/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BeforeLogin/index.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Logo/Logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Media/ImageMedia/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Media/ImageMedia/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Media/VideoMedia/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Media/VideoMedia/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PageRange/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageRange/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pagination/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RichText/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RichText/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/contact-form.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/contact-page.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/home-static.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/home.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-1.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-3.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-hero-1.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-hero1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-post1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-post2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/image-post3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/post-1.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/post-2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/endpoints/seed/post-3.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environment.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fields/defaultLexical.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/fields/defaultLexical.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fields/link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/fields/link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/HighImpact/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/LowImpact/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/MediumImpact/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/PostHero/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/RenderHero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/RenderHero.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/HeaderTheme/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/InitTheme/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/ThemeSelector/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/ThemeSelector/types.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/shared.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Theme/types.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/search/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/search/beforeSync.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/beforeSync.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/search/fieldOverrides.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/fieldOverrides.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/formatAuthors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/formatAuthors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/generatePreviewPath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/generatePreviewPath.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/getMediaUrl.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.mjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/e2e/frontend.e2e.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/e2e/frontend.e2e.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;vicmusara&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vicmusara/nicolepoetry.git&quot;,
+    &quot;accountId&quot;: &quot;93a79fc8-b2f8-4c41-a67a-754dffb41d50&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -247,8 +135,34 @@
       <workItem from="1753529615246" duration="6973000" />
       <workItem from="1753537382926" duration="11593000" />
       <workItem from="1753557092084" duration="5913000" />
-      <workItem from="1753601562809" duration="1193000" />
+      <workItem from="1753601562809" duration="6780000" />
+      <workItem from="1753610139596" duration="3442000" />
     </task>
+    <task id="LOCAL-00001" summary="Home page almost done">
+      <option name="closed" value="true" />
+      <created>1753602867597</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753602867598</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Home page almost done">
+      <option name="closed" value="true" />
+      <created>1753603046169</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753603046169</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Home page almost done">
+      <option name="closed" value="true" />
+      <created>1753603365855</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753603365855</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +177,17 @@
     <option featureType="dependencySupport" implementationName="javascript:npm:graphql" />
     <option featureType="dependencySupport" implementationName="javascript:npm:next" />
     <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Home page almost done" />

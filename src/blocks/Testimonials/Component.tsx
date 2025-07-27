@@ -18,12 +18,12 @@ const Testimonials: React.FC<TestimonialProps> = ({ backgroundImage, testimonial
     <section className="relative bg-dark-background text-foreground py-10 md:py-20">
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
-        <Media resource={backgroundImage} className="object-cover" fill />
+        <Media resource={backgroundImage} className="object-contain" fill />
         <div className="absolute inset-0" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-lg mx-auto px-6 rounded-md bg-background/95">
+      <div className="relative z-10 max-w-lg md:my-auto mx-auto px-6 rounded-md bg-background/95">
         <div className="max-w-6xl md:h-full mx-auto flex flex-col items-center justify-center bg-dark-background/60 p-10 rounded-lg">
           <span className="font-serif text-9xl  mb-4 w-16 h-16 leading-none text-muted-foreground">
             “

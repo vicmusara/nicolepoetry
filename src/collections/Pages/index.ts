@@ -9,6 +9,9 @@ import { BookTiles } from '@/blocks/BookTiles/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { BookSigning } from '@/blocks/BooksSigning/config'
+import { Newsletter } from '@/blocks/Newsletter/config'
+import { AboutAuthor } from '@/blocks/AboutAuthor/config'
+import { Testimonials } from '@/blocks/Testimonials/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
@@ -22,8 +25,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { AboutAuthor } from '@/blocks/AboutAuthor/config'
-import { Testimonials } from '@/blocks/Testimonials/config'
+
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -90,6 +92,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 BookSigning,
                 AboutAuthor,
                 Testimonials,
+                Newsletter
               ],
               required: true,
               admin: {

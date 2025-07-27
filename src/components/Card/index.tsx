@@ -43,7 +43,7 @@ export const Card: React.FC<{
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (
-          <div className="uppercase text-sm mb-4">
+          <div className="uppercase text-sm text-muted-foreground mb-4">
             {showCategories && hasCategories && (
               <div>
                 {categories?.map((category, index) => {
@@ -71,13 +71,13 @@ export const Card: React.FC<{
         {titleToUse && (
           <div className="prose">
             <h3>
-              <Link className="not-prose" href={href} ref={link.ref}>
+              <Link className="text-foreground" href={href} ref={link.ref}>
                 {titleToUse}
               </Link>
             </h3>
           </div>
         )}
-        {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
+        {description && <div className="mt-2 text-foreground">{description && <p>{sanitizedDescription}</p>}</div>}
       </div>
     </article>
   )
