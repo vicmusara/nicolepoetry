@@ -1,29 +1,19 @@
-import clsx from 'clsx'
+
 import React from 'react'
+import Link from 'next/link'
 
-interface Props {
-  className?: string
-  loading?: 'lazy' | 'eager'
-  priority?: 'auto' | 'high' | 'low'
-}
 
-export const Logo = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
 
-  const loading = loadingFromProps || 'lazy'
-  const priority = priorityFromProps || 'low'
-
+export const Logo = () => {
   return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
-      alt="Payload Logo"
-      width={193}
-      height={34}
-      loading={loading}
-      fetchPriority={priority}
-      decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
-    />
+    <>
+      <Link href="/" aria-label="Nicole Kazembe Home">
+        <div className="text-center text-foreground uppercase transition-colors hover:text-primary">
+          <p className="text-xs font-light uppercase tracking-[0.3em] leading-none">Nicole</p>
+          <p className="text-2xl font-medium uppercase leading-tight tracking-tight">Kazembe</p>
+        </div>
+      </Link>
+    </>
+
   )
 }

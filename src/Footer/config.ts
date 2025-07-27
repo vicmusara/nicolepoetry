@@ -5,25 +5,66 @@ import { revalidateFooter } from './hooks/revalidateFooter'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  label: 'Footer',
   access: {
     read: () => true,
   },
   fields: [
     {
       name: 'navItems',
+      label: 'Navigation Links',
+      labels: {
+        singular: 'Nav Item',
+        plural: 'Nav Items',
+      },
       type: 'array',
-      fields: [
-        link({
-          appearances: false,
-        }),
-      ],
-      maxRows: 6,
       admin: {
-        initCollapsed: true,
         components: {
-          RowLabel: '@/Footer/RowLabel#RowLabel',
+          RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
+      fields: [link()],
+    },
+    {
+      name: 'socialLinks',
+      label: 'Social Links',
+      labels: {
+        singular: 'Social Link',
+        plural: 'Social Links',
+      },
+      type: 'array',
+      admin: {
+        components: {
+          RowLabel: '@/Header/RowLabel#RowLabel',
+        },
+      },
+      fields: [
+        {
+          name: 'platform',
+          label: 'Platform',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Twitter', value: 'twitter' },
+            { label: 'YouTube', value: 'youtube' },
+            { label: 'Facebook', value: 'facebook' },
+            { label: 'Instagram', value: 'instagram' },
+          ],
+        },
+        {
+          name: 'url',
+          label: 'URL',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'copyrightText',
+      label: 'Copyright Text',
+      type: 'text',
+      required: false,
+      defaultValue: 'Bestselling Author',
     },
   ],
   hooks: {

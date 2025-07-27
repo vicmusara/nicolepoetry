@@ -68,7 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
+    stories: Story;
     media: Media;
     categories: Category;
     users: User;
@@ -84,7 +84,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
+    stories: StoriesSelect<false> | StoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -147,9 +147,13 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: string;
+  /**
+   * This is the title of the page.
+   */
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'heroA' | 'heroB' | 'heroC';
+    subtitle?: string | null;
     richText?: {
       root: {
         type: string;
@@ -176,8 +180,8 @@ export interface Page {
                   value: string | Page;
                 } | null)
               | ({
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'stories';
+                  value: string | Story;
                 } | null);
             url?: string | null;
             label: string;
@@ -190,8 +194,24 @@ export interface Page {
         }[]
       | null;
     media?: (string | null) | Media;
+    featuredLogos?:
+      | {
+          logo: string | Media;
+          id?: string | null;
+        }[]
+      | null;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | BooksTilesBlock
+    | BookSigningBlock
+    | AboutAuthorBlock
+    | TestimonialsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -209,9 +229,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
+ * via the `definition` "stories".
  */
-export interface Post {
+export interface Story {
   id: string;
   title: string;
   heroImage?: (string | null) | Media;
@@ -230,7 +250,7 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (string | Post)[] | null;
+  relatedStories?: (string | Story)[] | null;
   categories?: (string | Category)[] | null;
   meta?: {
     title?: string | null;
@@ -260,22 +280,7 @@ export interface Post {
  */
 export interface Media {
   id: string;
-  alt?: string | null;
-  caption?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -287,64 +292,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    square?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    small?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    large?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    xlarge?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -423,8 +370,8 @@ export interface CallToActionBlock {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'stories';
+                value: string | Story;
               } | null);
           url?: string | null;
           label: string;
@@ -473,8 +420,8 @@ export interface ContentBlock {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'stories';
+                value: string | Story;
               } | null);
           url?: string | null;
           label: string;
@@ -521,13 +468,13 @@ export interface ArchiveBlock {
     [k: string]: unknown;
   } | null;
   populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
+  relationTo?: 'stories' | null;
   categories?: (string | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
-        relationTo: 'posts';
-        value: string | Post;
+        relationTo: 'stories';
+        value: string | Story;
       }[]
     | null;
   id?: string | null;
@@ -736,6 +683,188 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BooksTilesBlock".
+ */
+export interface BooksTilesBlock {
+  /**
+   * This is the title of the section. You can leave it as Best Selling Books or change it to something else.
+   */
+  title?: string | null;
+  /**
+   * This is the link to redirect readers to the all books page.
+   */
+  viewAllLink?: string | null;
+  books?:
+    | {
+        /**
+         * This is where you upload the book cover image (preferably in webp format).
+         */
+        image: string | Media;
+        /**
+         * This is the title of the book.
+         */
+        title: string;
+        /**
+         * This is the link to redirect readers to the book order page.
+         */
+        orderLink: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'bookTiles';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BookSigningBlock".
+ */
+export interface BookSigningBlock {
+  /**
+   * This is the highlight text above the title.
+   */
+  highlightText?: string | null;
+  /**
+   * This is the call for action text above the title.
+   */
+  title?: string | null;
+  /**
+   * This is the description of the book signing event.
+   */
+  description?: string | null;
+  eventDate: string;
+  /**
+   * This is the location of the book signing event.
+   */
+  location: string;
+  /**
+   * This is the text of the button to redirect readers to book the event.
+   */
+  buttonText?: string | null;
+  /**
+   * This is the link of the button to redirect readers to book the event.
+   */
+  buttonLink?: string | null;
+  /**
+   * This is the image of the book signing event.
+   */
+  image: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'bookSigning';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutAuthorBlock".
+ */
+export interface AboutAuthorBlock {
+  /**
+   * Upload an image of the author.
+   */
+  image: string | Media;
+  /**
+   * This is the hight text above author name that will be displayed in the about author section.
+   */
+  highlightText?: string | null;
+  /**
+   * This is the name of the author.
+   */
+  authorName: string;
+  /**
+   * This is the short bio of the author.
+   */
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * This is the label of the read more button to redirect readers to a section or site where they can read more about the author.
+   */
+  readMoreLabel?: string | null;
+  /**
+   * This is the link of the read more button to redirect readers to a section or site where they can read more about the author.
+   */
+  readMoreLink?: string | null;
+  /**
+   * This is the number of books published by the author.
+   */
+  booksPublished?: number | null;
+  /**
+   * This is the number of award winning books by the author.
+   */
+  awardWinningBooks?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutAuthor';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  /**
+   * This is the background image of the testimonial block.
+   */
+  backgroundImage: string | Media;
+  /**
+   * Here you enter the testimonials/reviews that will be displayed in the testimonial block. You can add as many testimonials as you want.
+   */
+  testimonials?:
+    | {
+        /**
+         * Enter an excerpt of the review. This will be displayed in the testimonial block.
+         */
+        quote: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        /**
+         * Upload a transparent background svg of the signature of the person who gave the review.
+         */
+        signature?: (string | null) | Media;
+        /**
+         * Enter the name of the person who is giving the review.
+         */
+        reviewer: string;
+        /**
+         * Enter the title of the book this testimonial is about. If the testimonial is not about a book, leave this blank.
+         */
+        reviewedBook?: string | null;
+        /**
+         * Enter the order link for the book this testimonial is about. If the testimonial is not about a book, leave this blank.
+         */
+        bookOrderLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -752,8 +881,8 @@ export interface Redirect {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'stories';
+          value: string | Story;
         } | null);
     url?: string | null;
   };
@@ -788,8 +917,8 @@ export interface Search {
   title?: string | null;
   priority?: number | null;
   doc: {
-    relationTo: 'posts';
-    value: string | Post;
+    relationTo: 'stories';
+    value: string | Story;
   };
   slug?: string | null;
   meta?: {
@@ -800,9 +929,8 @@ export interface Search {
   categories?:
     | {
         relationTo?: string | null;
-        categoryID?: string | null;
-        title?: string | null;
         id?: string | null;
+        title?: string | null;
       }[]
     | null;
   updatedAt: string;
@@ -912,8 +1040,8 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
+        relationTo: 'stories';
+        value: string | Story;
       } | null)
     | ({
         relationTo: 'media';
@@ -999,6 +1127,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        subtitle?: T;
         richText?: T;
         links?:
           | T
@@ -1016,6 +1145,12 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        featuredLogos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
       };
   layout?:
     | T
@@ -1025,6 +1160,10 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        bookTiles?: T | BooksTilesBlockSelect<T>;
+        bookSigning?: T | BookSigningBlockSelect<T>;
+        aboutAuthor?: T | AboutAuthorBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1126,13 +1265,82 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
+ * via the `definition` "BooksTilesBlock_select".
  */
-export interface PostsSelect<T extends boolean = true> {
+export interface BooksTilesBlockSelect<T extends boolean = true> {
+  title?: T;
+  viewAllLink?: T;
+  books?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        orderLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BookSigningBlock_select".
+ */
+export interface BookSigningBlockSelect<T extends boolean = true> {
+  highlightText?: T;
+  title?: T;
+  description?: T;
+  eventDate?: T;
+  location?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutAuthorBlock_select".
+ */
+export interface AboutAuthorBlockSelect<T extends boolean = true> {
+  image?: T;
+  highlightText?: T;
+  authorName?: T;
+  bio?: T;
+  readMoreLabel?: T;
+  readMoreLink?: T;
+  booksPublished?: T;
+  awardWinningBooks?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        signature?: T;
+        reviewer?: T;
+        reviewedBook?: T;
+        bookOrderLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stories_select".
+ */
+export interface StoriesSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
-  relatedPosts?: T;
+  relatedStories?: T;
   categories?: T;
   meta?:
     | T
@@ -1161,7 +1369,6 @@ export interface PostsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  caption?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1173,80 +1380,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-  sizes?:
-    | T
-    | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        square?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        small?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        medium?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        large?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        xlarge?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        og?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1476,9 +1609,8 @@ export interface SearchSelect<T extends boolean = true> {
     | T
     | {
         relationTo?: T;
-        categoryID?: T;
-        title?: T;
         id?: T;
+        title?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1563,8 +1695,8 @@ export interface Header {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'stories';
+                value: string | Story;
               } | null);
           url?: string | null;
           label: string;
@@ -1592,15 +1724,27 @@ export interface Footer {
                 value: string | Page;
               } | null)
             | ({
-                relationTo: 'posts';
-                value: string | Post;
+                relationTo: 'stories';
+                value: string | Story;
               } | null);
           url?: string | null;
           label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
         };
         id?: string | null;
       }[]
     | null;
+  socialLinks?:
+    | {
+        platform: 'twitter' | 'youtube' | 'facebook' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyrightText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1643,9 +1787,18 @@ export interface FooterSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+              appearance?: T;
             };
         id?: T;
       };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1664,8 +1817,8 @@ export interface TaskSchedulePublish {
           value: string | Page;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'stories';
+          value: string | Story;
         } | null);
     global?: string | null;
     user?: (string | null) | User;

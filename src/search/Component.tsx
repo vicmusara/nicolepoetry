@@ -12,7 +12,9 @@ export const Search: React.FC = () => {
   const debouncedValue = useDebounce(value)
 
   useEffect(() => {
-    router.push(`/search${debouncedValue ? `?q=${debouncedValue}` : ''}`)
+    if (debouncedValue) {
+      router.push(`/search?q=${debouncedValue}`)
+    }
   }, [debouncedValue, router])
 
   return (

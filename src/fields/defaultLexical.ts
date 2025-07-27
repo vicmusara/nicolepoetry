@@ -16,11 +16,11 @@ export const defaultLexical = lexicalEditor({
     BoldFeature(),
     ItalicFeature(),
     LinkFeature({
-      enabledCollections: ['pages', 'posts'],
+      enabledCollections: ['pages', 'stories'],
       fields: ({ defaultFields }) => {
         const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
-          if ('name' in field && field.name === 'url') return false
-          return true
+          return !('name' in field && field.name === 'url');
+
         })
 
         return [
