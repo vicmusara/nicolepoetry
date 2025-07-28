@@ -10,7 +10,7 @@ import {
   Linkedin01Icon,
   Link01Icon,
   YoutubeIcon,
-} from 'hugeicons-react';
+} from 'hugeicons-react'
 import Link from 'next/link'
 
 export async function Footer() {
@@ -18,47 +18,44 @@ export async function Footer() {
 
   const navItems = footerData?.navItems || []
   const socialLinks = footerData?.socialLinks || []
-  const copyrightText =
-    footerData?.copyrightText || 'Bestselling Author'
+  const copyrightText = footerData?.copyrightText || 'Bestselling Author'
   const currentYear = new Date().getFullYear()
 
   // Helper to map platform to icon
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
       case 'twitter':
-        return TwitterIcon;
+        return TwitterIcon
       case 'instagram':
-        return InstagramIcon;
+        return InstagramIcon
       case 'facebook':
-        return Facebook01Icon;
+        return Facebook01Icon
       case 'linkedin':
-        return Linkedin01Icon;
+        return Linkedin01Icon
       case 'youtube':
-        return YoutubeIcon;
+        return YoutubeIcon
       default:
-        return Link01Icon;
+        return Link01Icon
     }
-  };
+  }
 
   // Helper to check if a link is internal
-  const isInternal = (url: string) => url.startsWith('/');
+  const isInternal = (url: string) => url.startsWith('/')
 
   return (
     <footer>
       <div className="mx-auto max-w-7xl px-6 pt-0 pb-10">
         <div className="flex flex-col items-center gap-10 border-b border-b-border pb-10 lg:flex-row lg:justify-between lg:gap-4">
-
           {/* Navigation */}
           <nav className=" flex justify-center lg:w-1/3 lg:justify-start">
             <ul className="flex flex-wrap items-center justify-center gap-6 text-sm font-book sm:gap-8">
               {navItems.map(({ link }, i) => (
-
-                  <CMSLink
-                    key={i}
-                    {...link}
-                    appearance="link"
-                    className="text-md text-foreground uppercase transition-colors hover:text-primary"
-                  />
+                <CMSLink
+                  key={i}
+                  {...link}
+                  appearance="link"
+                  className="text-md text-foreground uppercase transition-colors hover:text-primary"
+                />
               ))}
             </ul>
           </nav>
@@ -72,8 +69,8 @@ export async function Footer() {
           <div className="flex justify-center lg:w-1/3 lg:justify-end">
             <div className="flex items-center gap-6">
               {socialLinks.map((social, i) => {
-                const Icon = getSocialIcon(social.platform);
-                const isInternalLink = isInternal(social.url);
+                const Icon = getSocialIcon(social.platform)
+                const isInternalLink = isInternal(social.url)
                 if (isInternalLink) {
                   return (
                     <Link
@@ -84,7 +81,7 @@ export async function Footer() {
                     >
                       <Icon size={20} />
                     </Link>
-                  );
+                  )
                 } else {
                   return (
                     <a
@@ -97,7 +94,7 @@ export async function Footer() {
                     >
                       <Icon size={20} />
                     </a>
-                  );
+                  )
                 }
               })}
             </div>

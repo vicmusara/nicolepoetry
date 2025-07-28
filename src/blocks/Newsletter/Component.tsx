@@ -32,11 +32,11 @@ export const Newsletter: React.FC<NewsletterBlockProps> = ({
             name="email"
             placeholder="Email address"
             required
-            className="h-14 w-2/3 text-lg border-border bg-card px-4 py-3 text-start text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="h-12 w-2/3 text-sm border-border bg-card px-4 py-3 text-start text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           />
           <Button
             type="submit"
-            className="h-auto text-lg min-w-[180px] rounded-xs bg-primary px-5 py-3 font-medium text-foreground transition-colors hover:bg-primary-foreground"
+            className="h-auto w-fit text-sm md:text-lg rounded-xs bg-primary px-4 py-2 font-medium text-foreground transition-colors hover:bg-primary-foreground"
           >
             {buttonLabel}
           </Button>

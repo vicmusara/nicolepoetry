@@ -16,21 +16,22 @@ export const HeroA: React.FC<Page['hero']> = ({
   return (
     <section className="pt:4 mt:2 lg:pt-8 pb-4 lg:max-h-[calc(100vh-100px)] lg:mt-8 lg:p-5">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
 
-          <div className="lg:w-1/2 xl:w-5/12 text-center lg:text-left">
+          <div className="flex flex-col items-center justify-center lg:justify-start w-3/4 text-center lg:text-left">
             {subtitle && (
               <Heading subtitle={subtitle}/>
             )}
-
-            {richText && (
-              <RichText
-              data={richText}
-            />
-            )}
+            <div className="w-3/4">
+              {richText && (
+                <RichText
+                  data={richText}
+                />
+              )}
+            </div>
 
             {Array.isArray(links) && links.length > 0 && (
-              <div className="mt-8">
+              <div className="mt-3">
                 {links.map(({ link }, i) => (
                   <CMSLink
                     key={i}
@@ -41,9 +42,9 @@ export const HeroA: React.FC<Page['hero']> = ({
             )}
 
             {Array.isArray(featuredLogos) && featuredLogos.length > 0 && (
-              <div className="mt-9">
-                <p className="text-muted-foreground text-sm">As featured on:</p>
-                <div className="flex items-center justify-start gap-8 mt-5 flex-wrap">
+              <div className="mt-2">
+                <p className="text-muted-foreground text-center text-sm">As featured on:</p>
+                <div className="flex items-center justify-center gap-8 mt-5 flex-wrap">
                   {featuredLogos.map((logo, i) => (
                     <div key={i} className="h-6">
                       {typeof logo === 'object' && (
@@ -64,7 +65,7 @@ export const HeroA: React.FC<Page['hero']> = ({
               <div className="rounded-lg shadow-2xl shadow-black/40 overflow-hidden">
                 <Media
                   resource={media}
-                  imgClassName="w-full lg:max-h-[calc(100vh-200px)] max-h-[calc(100vh-300px)]"
+                  imgClassName="w-full sm:max-h-[calc(100vh-500px)] md:max-h-[calc(100vh-400px)] lg:max-h-[calc(100vh-200px)]"
                   priority
                 />
               </div>

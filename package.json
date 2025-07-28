@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@payloadcms/admin-bar": "^3.49.0",
     "@payloadcms/db-mongodb": "3.49.0",
     "@payloadcms/live-preview-react": "^3.49.0",
     "@payloadcms/next": "3.49.0",

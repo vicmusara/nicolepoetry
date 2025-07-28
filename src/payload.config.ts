@@ -28,6 +28,8 @@ export default buildConfig({
     },
     user: Users.slug,
     livePreview: {
+      url: process.env.NEXT_PUBLIC_SERVER_URL || process.env.VERCEL_URL || '',
+      collections: ['pages'],
       breakpoints: [
         {
           label: 'Mobile',

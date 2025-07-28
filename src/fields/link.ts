@@ -49,6 +49,10 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
                 label: 'Custom URL',
                 value: 'custom',
               },
+              {
+                label: 'Anchor link',
+                value: 'anchor',
+              },
             ],
           },
           {
@@ -85,6 +89,15 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
         condition: (_, siblingData) => siblingData?.type === 'custom',
       },
       label: 'Custom URL',
+      required: true,
+    },
+    {
+      name: 'anchor',
+      type: 'text',
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === 'anchor',
+      },
+      label: 'Anchor ID (without #)',
       required: true,
     },
   ]
