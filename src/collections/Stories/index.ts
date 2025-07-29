@@ -14,6 +14,7 @@ import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { Banner } from '@/blocks/Banner/config'
 import { Code } from '@/blocks/Code/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
+import { RelatedStories } from '@/blocks/RelatedStories/config'
 import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
@@ -42,6 +43,7 @@ export const Stories: CollectionConfig<'stories'> = {
     title: true,
     slug: true,
     categories: true,
+    populatedAuthors: true,
     meta: {
       image: true,
       description: true,
@@ -90,7 +92,7 @@ export const Stories: CollectionConfig<'stories'> = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Banner, Code, MediaBlock, RelatedStories] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
@@ -185,12 +187,14 @@ export const Stories: CollectionConfig<'stories'> = {
     {
       name: 'authors',
       type: 'relationship',
+      hasMany: true,
+      relationTo: ['users', 'writers'],
+      required: false,
       admin: {
         position: 'sidebar',
       },
-      hasMany: true,
-      relationTo: 'users',
     },
+
     // This field is only used to populate the user data via the `populateAuthors` hook
     // This is because the `user` collection has access control locked to protect user privacy
     // GraphQL will also not return mutated user data that differs from the underlying schema
@@ -211,6 +215,10 @@ export const Stories: CollectionConfig<'stories'> = {
         },
         {
           name: 'name',
+          type: 'text',
+        },
+        {
+          name: 'avatar',
           type: 'text',
         },
       ],

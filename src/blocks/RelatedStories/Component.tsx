@@ -18,11 +18,15 @@ export const RelatedStories: React.FC<RelatedStoriesProps> = (props) => {
 
   return (
     <div className={clsx('lg:container', className)}>
-      {introContent && <RichText data={introContent} enableGutter={false} />}
+      {introContent && (
+        <RichText data={introContent} enableGutter={false} className="text-foreground" />
+      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 items-stretch">
         {docs?.map((doc, index) => {
-          return <Card key={index} doc={doc} relationTo="stories" showCategories />
+          return (
+            <Card key={index} doc={doc} relationTo="stories" showCategories variant="compact" />
+          )
         })}
       </div>
     </div>

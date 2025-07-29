@@ -4,25 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Turning off vercel deployment">
-      <change afterPath="$PROJECT_DIR$/src/app/next/exit-preview/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/next/preview/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AdminBar/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AdminBar/index.tsx" afterDir="false" />
+    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Edited anchor link">
+      <change afterPath="$PROJECT_DIR$/src/access/isOwnWriter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/collections/Writers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Footer/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Header/Nav/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/Nav/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/Newsletter/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Newsletter/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Pages/hooks/revalidatePage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Pages/hooks/revalidatePage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Stories/hooks/populateAuthors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Stories/hooks/populateAuthors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Stories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Stories/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/heading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fields/link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/fields/link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/HeroA/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/HeroA/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageRange/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageRange/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Pagination/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RichText/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RichText/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/generateMeta.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/generateMeta.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/mergeOpenGraph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/mergeOpenGraph.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +146,8 @@
       <workItem from="1753601562809" duration="6780000" />
       <workItem from="1753610139596" duration="3442000" />
       <workItem from="1753626907058" duration="9422000" />
-      <workItem from="1753705240436" duration="2144000" />
+      <workItem from="1753705240436" duration="15095000" />
+      <workItem from="1753767077997" duration="12545000" />
     </task>
     <task id="LOCAL-00001" summary="Home page almost done">
       <option name="closed" value="true" />
@@ -181,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753627692944</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Edited anchor link">
+      <option name="closed" value="true" />
+      <created>1753707493204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1753707493204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +228,7 @@
     <MESSAGE value="Home page almost done" />
     <MESSAGE value="Newsletter button" />
     <MESSAGE value="Turning off vercel deployment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Turning off vercel deployment" />
+    <MESSAGE value="Edited anchor link" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited anchor link" />
   </component>
 </project>

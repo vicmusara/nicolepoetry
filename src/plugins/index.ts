@@ -15,7 +15,7 @@ import { Page, Story } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Story | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title} | @nicolepoetry` : '@nicolepoetry'
 }
 
 const generateURL: GenerateURL<Story | Page> = ({ doc }) => {

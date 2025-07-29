@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Stories } from './collections/Stories'
 import { Users } from './collections/Users'
+import { Writers } from './collections/Writers'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -57,7 +58,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Stories, Media, Categories, Users],
+  collections: [Pages, Stories, Media, Categories, Users, Writers],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
@@ -73,10 +74,10 @@ export default buildConfig({
           accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
           secretAccessKey: process.env.S3_SECRET || '',
         },
-        region: "auto",
+        region: 'auto',
         endpoint: process.env.S3_ENDPOINT || '',
-      }
-    })
+      },
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   sharp,

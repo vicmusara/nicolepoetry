@@ -6,6 +6,50 @@ import React from 'react'
 import RichText from '@/components/RichText'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
+import { CardStoryData } from '@/components/Card'
+
+// Helper function to populate authors manually
+const populateAuthorsForStories = (stories: any[]): any[] => {
+  return stories.map((story) => {
+    if (story.authors && story.authors.length > 0) {
+      const populatedAuthors: { id: string; name: string; avatar?: string | any }[] = []
+
+      for (const author of story.authors) {
+        try {
+          if (typeof author === 'object' && author !== null) {
+            const authorValue = author.value
+
+            // Check if it's a populated object or just an ID
+            if (typeof authorValue === 'object' && authorValue !== null && authorValue.id) {
+              // It's a populated object
+              if (authorValue.name) {
+                populatedAuthors.push({
+                  id: authorValue.id,
+                  name: authorValue.name,
+                  avatar: authorValue.avatar, // Pass the full avatar object instead of just the URL
+                })
+              }
+            } else if (typeof authorValue === 'string') {
+              // It's just an ID - we can't fetch here in the frontend
+              // This will be handled by the populateAuthors hook on the backend
+            }
+          }
+        } catch (error) {
+          console.error('Error processing author:', error)
+        }
+      }
+
+      if (populatedAuthors.length > 0) {
+        return {
+          ...story,
+          populatedAuthors,
+        }
+      }
+    }
+
+    return story
+  })
+}
 
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {
@@ -16,7 +60,7 @@ export const ArchiveBlock: React.FC<
 
   const limit = limitFromProps || 3
 
-  let stories: Story[] = []
+  let stories: any[] = []
 
   if (populateBy === 'collection') {
     const payload = await getPayload({ config: configPromise })
@@ -30,6 +74,19 @@ export const ArchiveBlock: React.FC<
       collection: 'stories',
       depth: 1,
       limit,
+      overrideAccess: true, // Bypass access control to get author data
+      select: {
+        title: true,
+        slug: true,
+        categories: true,
+        populatedAuthors: true, // Use populatedAuthors from backend hook
+        meta: {
+          image: true,
+          description: true,
+        },
+        createdAt: true,
+        authors: true, // Include authors to populate manually
+      },
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
             where: {
@@ -41,12 +98,13 @@ export const ArchiveBlock: React.FC<
         : {}),
     })
 
-    stories = fetchedStories.docs
+    stories = populateAuthorsForStories(fetchedStories.docs)
   } else {
     if (selectedDocs?.length) {
       stories = selectedDocs.map((story) => {
         if (typeof story.value === 'object') return story.value
-      }) as Story[]
+      }) as any[]
+      stories = populateAuthorsForStories(stories)
     }
   }
 

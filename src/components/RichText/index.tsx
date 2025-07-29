@@ -3,6 +3,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import { RelatedStories as RelatedStoriesBlockComponent } from '@/blocks/RelatedStories/Component'
 import { cn } from '@/utilities/ui'
 
 import {
@@ -22,6 +23,7 @@ import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
+  RelatedStoriesBlock,
 } from '@/payload-types'
 
 /* -----------------------------------------------------
@@ -42,7 +44,9 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
  * ----------------------------------------------------- */
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>
+  | SerializedBlockNode<
+      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | RelatedStoriesBlock
+    >
 
 type Props = {
   data: DefaultTypedEditorState
@@ -60,18 +64,18 @@ type Props = {
  * Component
  * ----------------------------------------------------- */
 export default function RichText({
-                                   className,
-                                   data,
-                                   enableProse = true,
-                                   enableGutter = true,
-                                   paragraphClassName,
-                                   headingClassName,
-                                   listClassName,
-                                   linkClassName,
-                                   boldClassName,
-                                   italicClassName,
-                                   ...rest
-                                 }: Props) {
+  className,
+  data,
+  enableProse = true,
+  enableGutter = true,
+  paragraphClassName,
+  headingClassName,
+  listClassName,
+  linkClassName,
+  boldClassName,
+  italicClassName,
+  ...rest
+}: Props) {
   const jsxConvertersWithProps: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
     ...defaultConverters,
     ...LinkJSXConverter({ internalDocToHref }),
@@ -141,6 +145,7 @@ export default function RichText({
       ),
       code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
       cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+      relatedStories: ({ node }) => <RelatedStoriesBlockComponent {...node.fields} />,
     },
   })
 

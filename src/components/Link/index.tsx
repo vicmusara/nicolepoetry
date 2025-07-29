@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 import Link from 'next/link'
@@ -41,7 +43,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
           reference.value.slug
         }`
       : type === 'anchor' && anchor
-        ? `#${anchor}`
+        ? `/#${anchor}`
         : url
 
   if (!href) return null
@@ -51,11 +53,14 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (type === 'anchor' && anchor) {
-      e.preventDefault()
-      const element = document.getElementById(anchor)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+      if (window.location.pathname === '/') {
+        e.preventDefault()
+        const element = document.getElementById(anchor)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
       }
+      // If not on homepage, do not preventDefault so Next.js navigates
     }
   }
 
@@ -67,6 +72,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         href={href || url || ''}
         {...newTabProps}
         onClick={handleAnchorClick}
+        {...(type === 'anchor' ? { scroll: false } : {})}
       >
         {label && label}
         {children && children}
@@ -81,6 +87,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         href={href || url || ''}
         {...newTabProps}
         onClick={handleAnchorClick}
+        {...(type === 'anchor' ? { scroll: false } : {})}
       >
         {label && label}
         {children && children}
