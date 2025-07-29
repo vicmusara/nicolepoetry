@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import type { Story, Media as MediaType } from '@/payload-types'
 import { Media } from '@/components/Media'
+import { Badge } from '@/components/ui/badge'
 
 export type CardStoryData = Pick<
   Story,
@@ -17,7 +18,6 @@ export type CardStoryData = Pick<
         id?: string | null
         name?: string | null
         avatar?: string | MediaType | null
-        role?: string
       }[]
     | null
 }
@@ -61,7 +61,11 @@ export const Card: React.FC<{
     <article
       ref={card.ref}
       className={cn(
-        'group flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6 mx-auto',
+        'group border border-x-0 border-b-0 pt-16 border-t-border flex flex-col' +
+          ' md:flex-row' +
+          ' gap-4' +
+          ' md:gap-6' +
+          ' mx-auto ',
         variant === 'compact' ? 'max-w-lg' : 'max-w-3xl',
         'hover:bg-accent/10 transition-colors',
         className,
@@ -81,8 +85,9 @@ export const Card: React.FC<{
             resource={mainImage}
             alt={mainImage.alt || title}
             imgClassName={cn(
-              'aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105',
-              variant === 'compact' && 'aspect-[3/4]',
+              'aspect-[5/6] w-full object-cover transition-transform duration-300' +
+                ' group-hover:scale-105',
+              variant === 'compact' && 'aspect-[3.7/4]',
             )}
           />
         ) : (
@@ -93,15 +98,15 @@ export const Card: React.FC<{
       </Link>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col justify-between min-h-0">
+      <div className="flex flex-col justify-between min-h-0">
         {/* Header with date and category */}
         <div className="flex items-center gap-x-4 text-xs text-muted-foreground mb-2">
           <time dateTime={createdAt}>{date}</time>
-          <span>{categoryTitle}</span>
+          <Badge variant="secondary">{categoryTitle}</Badge>
         </div>
 
         {/* Title and description */}
-        <div className="flex-1">
+        <div className="flex-1 min-h-0">
           <h3
             className={cn(
               'font-semibold leading-tight text-foreground mb-3 transition-colors group-hover:text-accent',

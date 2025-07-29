@@ -46,7 +46,7 @@ export default async function Post({ params: paramsPromise }: Args) {
   if (!story) return <PayloadRedirects url={url} />
 
   return (
-    <article className="pt-16 pb-16">
+    <article className="mt-36 pt-20 pb-16">
       <PageClient />
 
       {/* Allows redirects for valid pages too */}
@@ -56,7 +56,7 @@ export default async function Post({ params: paramsPromise }: Args) {
 
       <StoryHero story={story} />
 
-      <div className="flex flex-col items-center gap-4 pt-8">
+      <div className="flex flex-col items-center px-8 gap-4 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={story.content} enableGutter={false} />
           {story.relatedStories && story.relatedStories.length > 0 && (

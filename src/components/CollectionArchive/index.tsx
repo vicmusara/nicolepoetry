@@ -11,7 +11,7 @@ export const CollectionArchive: React.FC<Props> = ({ stories }) => {
 
   return (
     <section className="container">
-      <div className="grid grid-cols-1 gap-y-12 sm:gap-y-16">
+      <div className="grid grid-cols-1 gap-y-16">
         {stories.map((story, index) => {
           if (typeof story === 'object' && story !== null) {
             return (

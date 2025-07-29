@@ -4,7 +4,7 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { cn } from '@/lib/utils'
 
 interface HeaderClientProps {
@@ -12,21 +12,10 @@ interface HeaderClientProps {
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
 
   return (
     <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      hasScrolled ? "bg-primary-dark/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+      "fixed top-0 left-0 right-0 z-50 bg-primary-dark/95 backdrop-blur-sm shadow-lg"
     )}>
       <div className="py-4 max-w-7xl mx-auto flex justify-between items-center">
           <Logo />

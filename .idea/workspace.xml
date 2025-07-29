@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Edited anchor link">
-      <change afterPath="$PROJECT_DIR$/src/access/isOwnWriter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collections/Writers.ts" afterDir="false" />
+    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Stories page almost done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/[slug]/page.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Header/Component.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/Component.client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Pages/hooks/revalidatePage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Pages/hooks/revalidatePage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Stories/hooks/populateAuthors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Stories/hooks/populateAuthors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Stories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Stories/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PageRange/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageRange/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pagination/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RichText/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RichText/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/generateMeta.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/generateMeta.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/mergeOpenGraph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/mergeOpenGraph.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/StoryHero/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/StoryHero/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +46,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -147,7 +133,8 @@
       <workItem from="1753610139596" duration="3442000" />
       <workItem from="1753626907058" duration="9422000" />
       <workItem from="1753705240436" duration="15095000" />
-      <workItem from="1753767077997" duration="12545000" />
+      <workItem from="1753767077997" duration="21346000" />
+      <workItem from="1753802630434" duration="3010000" />
     </task>
     <task id="LOCAL-00001" summary="Home page almost done">
       <option name="closed" value="true" />
@@ -197,7 +184,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753707493204</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Stories page almost done">
+      <option name="closed" value="true" />
+      <created>1753785856831</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753785856832</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Stories page almost done">
+      <option name="closed" value="true" />
+      <created>1753785875001</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753785875001</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +232,7 @@
     <MESSAGE value="Newsletter button" />
     <MESSAGE value="Turning off vercel deployment" />
     <MESSAGE value="Edited anchor link" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited anchor link" />
+    <MESSAGE value="Stories page almost done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stories page almost done" />
   </component>
 </project>
