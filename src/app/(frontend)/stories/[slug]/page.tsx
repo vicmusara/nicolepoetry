@@ -1,22 +1,22 @@
-import type { Metadata } from 'next'
+import type { Metadata } from "next"
 
-import { RelatedStories } from '@/blocks/RelatedStories/Component'
-import { PayloadRedirects } from '@/components/PayloadRedirects'
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import { draftMode } from 'next/headers'
-import React, { cache } from 'react'
-import RichText from '@/components/RichText'
+import { RelatedStories } from "@/blocks/RelatedStories/Component"
+import { PayloadRedirects } from "@/components/PayloadRedirects"
+import configPromise from "@payload-config"
+import { getPayload } from "payload"
+import { draftMode } from "next/headers"
+import { cache } from "react"
+import RichText from "@/components/RichText"
 
-import { StoryHero } from '@/heros/StoryHero'
-import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { StoryHero } from "@/heros/StoryHero"
+import { generateMeta } from "@/utilities/generateMeta"
+import PageClient from "./page.client"
+import { LivePreviewListener } from "@/components/LivePreviewListener"
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
   const stories = await payload.find({
-    collection: 'stories',
+    collection: "stories",
     draft: false,
     limit: 1000,
     overrideAccess: false,
@@ -39,8 +39,8 @@ type Args = {
 
 export default async function Post({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = '' } = await paramsPromise
-  const url = '/stories/' + slug
+  const { slug = "" } = await paramsPromise
+  const url = "/stories/" + slug
   const story = await queryPostBySlug({ slug })
 
   if (!story) return <PayloadRedirects url={url} />
@@ -62,7 +62,7 @@ export default async function Post({ params: paramsPromise }: Args) {
           {story.relatedStories && story.relatedStories.length > 0 && (
             <RelatedStories
               className="mt-12 max-w-[52rem] lg:grid lg:grid-cols-subgrid col-start-1 col-span-3 grid-rows-[2fr]"
-              docs={story.relatedStories.filter((story) => typeof story === 'object')}
+              docs={story.relatedStories.filter((story) => typeof story === "object")}
             />
           )}
         </div>
@@ -72,7 +72,7 @@ export default async function Post({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug = '' } = await paramsPromise
+  const { slug = "" } = await paramsPromise
   const post = await queryPostBySlug({ slug })
 
   return generateMeta({ doc: post })
@@ -84,7 +84,8 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
-    collection: 'stories',
+    collection: "stories",
+    depth: 3, // Increased depth to populate related stories, authors, and their avatars
     draft,
     limit: 1,
     overrideAccess: draft,

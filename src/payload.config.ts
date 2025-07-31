@@ -15,9 +15,11 @@ import { Users } from './collections/Users'
 import { Writers } from './collections/Writers'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
-import { plugins } from './plugins'
+import { plugins} from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { resendAdapter } from '@payloadcms/email-resend'
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,6 +28,22 @@ export default buildConfig({
   admin: {
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    meta: {
+      titleSuffix: ' – My App',
+      icons: [
+        { rel: 'icon', type: 'image/png', url: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', url: '/favicon-16x16.png' },
+        { rel: 'apple-touch-icon', type: 'image/png', url: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', url: '/android-chrome-192x192.png' },
+        { rel: 'icon', type: 'image/png', url: '/android-chrome-512x512.png' },
+      ],
+    },
+    components: {
+      graphics: {
+        Logo: '/components/payload/Logo#Logo',
+        Icon: '/components/payload/Icon#Icon',
+      },
     },
     user: Users.slug,
     livePreview: {
@@ -58,11 +76,17 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
+  email: resendAdapter({
+    defaultFromAddress: 'nicole.k@nicolepoetry.com',
+    defaultFromName: 'Nicole. K',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   collections: [Pages, Stories, Media, Categories, Users, Writers],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     ...plugins,
+
     // storage-adapter-placeholder
     s3Storage({
       collections: {

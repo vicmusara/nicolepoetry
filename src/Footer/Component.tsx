@@ -4,12 +4,11 @@ import { CMSLink } from '@/components/Link'
 import type { Footer as FooterType } from '@/payload-types'
 import { Logo } from '@/components/Logo/Logo'
 import {
-  TwitterIcon,
   InstagramIcon,
   Facebook01Icon,
   Linkedin01Icon,
   Link01Icon,
-  YoutubeIcon,
+  YoutubeIcon, TiktokIcon,
 } from 'hugeicons-react'
 import Link from 'next/link'
 
@@ -24,8 +23,8 @@ export async function Footer() {
   // Helper to map platform to icon
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
-      case 'twitter':
-        return TwitterIcon
+      case 'tiktok':
+        return TiktokIcon
       case 'instagram':
         return InstagramIcon
       case 'facebook':

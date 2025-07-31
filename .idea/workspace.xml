@@ -4,18 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Stories page almost done">
+    <list default="true" id="847c8c1e-432f-4bd5-ae3c-e81ea17375d6" name="Changes" comment="Stories page is troublesome. Card component.">
+      <change afterPath="$PROJECT_DIR$/public/assets/admin-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/payload/Icon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/payload/Logo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/heros/LowImpact/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/sendFormEmails/emailTemplates.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/sendFormEmails/sendFormEmails.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Footer/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Footer/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Footer/config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Header/Component.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header/Component.client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/search/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(frontend)/stories/page/[pageNumber]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/my-route/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ArchiveBlock/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BookTiles/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/BooksSigning/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/BooksSigning/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/CallToAction/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CallToAction/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/CallToAction/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CallToAction/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/Form/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Form/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RelatedStories/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Media.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Media.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CollectionArchive/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heros/StoryHero/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/StoryHero/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Link/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RichText/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RichText/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/heading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fields/link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/fields/link.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/HeroA/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/HomeHero/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/HeroB/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/HeroC/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/MediumImpact/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/RenderHero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/RenderHero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heros/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/heros/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/getURL.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/getURL.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +60,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -46,7 +81,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -57,36 +92,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
-    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Documents/mira-i-o/nicolepoetry/src/app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\User\\Documents\\mira-i-o\\nicolepoetry\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "last_opened_file_path": "C:/Users/User/Documents/mira-i-o/nicolepoetry/public/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\Users\\User\\Documents\\mira-i-o\\nicolepoetry\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\User\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="4bebeebd-7ead-4620-9eee-337b09458fb4" />
+        <option name="reportName" value="nicolepoetry/qodana/2025-07-31" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\User\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="4bebeebd-7ead-4620-9eee-337b09458fb4" reportId="nicolepoetry/qodana/2025-07-31" />
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\public\assets" />
       <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\app" />
       <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\components" />
       <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\app\(frontend)" />
       <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src" />
-      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\blocks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\blocks\Testimonials" />
-      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\app\(frontend)" />
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\app" />
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry" />
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\public" />
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\hooks\sendFormEmails" />
+      <recent name="C:\Users\User\Documents\mira-i-o\nicolepoetry\src\app\api\check-payload-config" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -134,7 +189,11 @@
       <workItem from="1753626907058" duration="9422000" />
       <workItem from="1753705240436" duration="15095000" />
       <workItem from="1753767077997" duration="21346000" />
-      <workItem from="1753802630434" duration="3010000" />
+      <workItem from="1753802630434" duration="10168000" />
+      <workItem from="1753867583561" duration="16439000" />
+      <workItem from="1753884631097" duration="8410000" />
+      <workItem from="1753944903430" duration="9018000" />
+      <workItem from="1753954826826" duration="20527000" />
     </task>
     <task id="LOCAL-00001" summary="Home page almost done">
       <option name="closed" value="true" />
@@ -200,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753785875001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Stories page is troublesome. Card component.">
+      <option name="closed" value="true" />
+      <created>1753805835351</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1753805835351</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +300,7 @@
     <MESSAGE value="Turning off vercel deployment" />
     <MESSAGE value="Edited anchor link" />
     <MESSAGE value="Stories page almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stories page almost done" />
+    <MESSAGE value="Stories page is troublesome. Card component." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stories page is troublesome. Card component." />
   </component>
 </project>

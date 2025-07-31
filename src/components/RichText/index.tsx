@@ -1,42 +1,52 @@
-import React from 'react'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
-import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
-import { BannerBlock } from '@/blocks/Banner/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-import { RelatedStories as RelatedStoriesBlockComponent } from '@/blocks/RelatedStories/Component'
-import { cn } from '@/utilities/ui'
+import type React from "react"
+import { MediaBlock } from "@/blocks/MediaBlock/Component"
+import { CodeBlock, type CodeBlockProps } from "@/blocks/Code/Component"
+import { BannerBlock } from "@/blocks/Banner/Component"
+import { CallToActionBlock } from "@/blocks/CallToAction/Component"
+import { RelatedStories as RelatedStoriesBlockComponent } from "@/blocks/RelatedStories/Component"
+import { cn } from "@/utilities/ui"
 
-import {
+import type {
   DefaultNodeTypes,
   SerializedBlockNode,
   SerializedLinkNode,
-  type DefaultTypedEditorState,
-} from '@payloadcms/richtext-lexical'
+  DefaultTypedEditorState,
+  // Removed SerializedLexicalNode import as it's not directly exported
+} from "@payloadcms/richtext-lexical"
 
 import {
-  JSXConvertersFunction,
+  type JSXConvertersFunction,
   LinkJSXConverter,
   RichText as PayloadRichText,
-} from '@payloadcms/richtext-lexical/react'
+} from "@payloadcms/richtext-lexical/react"
 
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
   RelatedStoriesBlock,
-} from '@/payload-types'
+  Story, // Import Story type for filtering
+} from "@/payload-types"
 
 /* -----------------------------------------------------
  * Utilities
  * ----------------------------------------------------- */
-const isHeadingTag = (tag: string): tag is 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' =>
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
+const isHeadingTag = (tag: string): tag is "h1" | "h2" | "h3" | "h4" | "h5" | "h6" =>
+  ["h1", "h2", "h3", "h4", "h5", "h6"].includes(tag)
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
-  const { value, relationTo } = linkNode.fields.doc!
-  if (typeof value !== 'object') throw new Error('Expected value to be an object')
-  const slug = value.slug
-  return relationTo === 'stories' ? `/stories/${slug}` : `/${slug}`
+  const doc = linkNode.fields.doc
+  if (!doc) return "" // No document reference
+
+  const { value, relationTo } = doc
+
+  // Check if value is an object and has a slug property
+  if (typeof value === "object" && value !== null && "slug" in value && typeof value.slug === "string") {
+    const slug = value.slug
+    return relationTo === "stories" ? `/stories/${slug}` : `/${slug}`
+  }
+  // If value is an ID (string) or doesn't have a slug, return an empty string
+  return ""
 }
 
 /* -----------------------------------------------------
@@ -44,12 +54,10 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
  * ----------------------------------------------------- */
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<
-      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | RelatedStoriesBlock
-    >
+  | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | RelatedStoriesBlock>
 
 type Props = {
-  data: DefaultTypedEditorState
+  data: DefaultTypedEditorState | null | undefined // Allow null or undefined for optional rich text
   enableGutter?: boolean
   enableProse?: boolean
   paragraphClassName?: string
@@ -64,72 +72,77 @@ type Props = {
  * Component
  * ----------------------------------------------------- */
 export default function RichText({
-  className,
-  data,
-  enableProse = true,
-  enableGutter = true,
-  paragraphClassName,
-  headingClassName,
-  listClassName,
-  linkClassName,
-  boldClassName,
-  italicClassName,
-  ...rest
-}: Props) {
+                                   className,
+                                   data,
+                                   enableProse = true,
+                                   enableGutter = true,
+                                   paragraphClassName,
+                                   headingClassName,
+                                   listClassName,
+                                   linkClassName,
+                                   boldClassName,
+                                   italicClassName,
+                                   ...rest
+                                 }: Props) {
   const jsxConvertersWithProps: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
     ...defaultConverters,
     ...LinkJSXConverter({ internalDocToHref }),
     heading: ({ node, nodesToJSX }) => {
-      const Tag = isHeadingTag(node?.tag) ? node.tag : 'h1'
-      const headingClasses: Record<string, string> = {
-        h1: 'lg:text-5xl text-xl font-medium text-foreground leading-tight',
-        h2: 'lg:text-4xl text-xl font-medium text-foreground leading-tight',
-        h3: 'lg:text-3xl text-xl font-medium text-foreground leading-tight',
-        h4: 'lg:text-2xl text-xl font-medium text-foreground leading-tight',
-        h5: 'lg:text-xl text-xl font-medium text-foreground leading-tight',
-        h6: 'lg:text-lg text-xl font-medium text-foreground leading-tight',
+      const Tag = isHeadingTag(node?.tag) ? node.tag : "h1"
+      // Simplified default heading classes, relying more on prose for base styles
+      // and allowing headingClassName to provide specific overrides.
+      const baseHeadingClasses = "font-semibold leading-tight text-foreground"
+      const sizeClasses: Record<string, string> = {
+        h1: "text-4xl md:text-5xl",
+        h2: "text-3xl md:text-4xl",
+        h3: "text-2xl md:text-3xl",
+        h4: "text-xl md:text-2xl",
+        h5: "text-lg md:text-xl",
+        h6: "text-base md:text-lg",
       }
       return (
-        <Tag className={cn(headingClasses[Tag], headingClassName)}>
-          {nodesToJSX({ nodes: node.children })}
+        <Tag className={cn(baseHeadingClasses, sizeClasses[Tag], headingClassName)}>
+          {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
         </Tag>
       )
     },
     paragraph: ({ node, nodesToJSX }) => (
-      <p className={cn('text-muted-foreground mt-6', paragraphClassName)}>
-        {nodesToJSX({ nodes: node.children })}
+      <p className={cn("text-muted-foreground mt-6", paragraphClassName)}>
+        {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
       </p>
     ),
     list: ({ node, nodesToJSX }) => {
-      const Tag = node?.listType === 'number' ? 'ol' : 'ul'
+      const Tag = node?.listType === "number" ? "ol" : "ul"
       return (
         <Tag
           className={cn(
-            `mt-6 ${Tag === 'ul' ? 'list-disc' : 'list-decimal'} list-inside text-muted-foreground`,
+            `mt-6 ${Tag === "ul" ? "list-disc" : "list-decimal"} list-inside text-muted-foreground`,
             listClassName,
           )}
         >
-          {nodesToJSX({ nodes: node.children })}
+          {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
         </Tag>
       )
     },
     link: ({ node, nodesToJSX }) => (
       <a
         href={node.fields.url}
-        className={cn('text-accent-foreground hover:underline', linkClassName)}
-        target={node.fields.newTab ? '_blank' : '_self'}
-        rel={node.fields.newTab ? 'noopener noreferrer' : undefined}
+        className={cn("text-accent-foreground hover:underline", linkClassName)}
+        target={node.fields.newTab ? "_blank" : "_self"}
+        rel={node.fields.newTab ? "noopener noreferrer" : undefined}
       >
-        {nodesToJSX({ nodes: node.children })}
+        {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
       </a>
     ),
     bold: ({ node, nodesToJSX }) => (
-      <strong className={cn('font-semibold', boldClassName)}>
-        {nodesToJSX({ nodes: node.children })}
+      <strong className={cn("font-semibold", boldClassName)}>
+        {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
       </strong>
     ),
     italic: ({ node, nodesToJSX }) => (
-      <em className={cn('italic', italicClassName)}>{nodesToJSX({ nodes: node.children })}</em>
+      <em className={cn("italic", italicClassName)}>
+        {nodesToJSX({ nodes: node.children })} {/* Removed explicit cast */}
+      </em>
     ),
     blocks: {
       banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
@@ -145,19 +158,30 @@ export default function RichText({
       ),
       code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
       cta: ({ node }) => <CallToActionBlock {...node.fields} />,
-      relatedStories: ({ node }) => <RelatedStoriesBlockComponent {...node.fields} />,
+      relatedStories: ({ node }) => {
+        if (!node.fields) return null
+
+        // Filter docs to ensure only populated Story objects are passed
+        const filteredDocs = node.fields.docs?.filter(
+          (doc): doc is Story => typeof doc === "object" && doc !== null && "id" in doc,
+        )
+
+        return <RelatedStoriesBlockComponent {...node.fields} docs={filteredDocs} />
+      },
     },
   })
+
+  if (!data) return null // Render nothing if data is null or undefined
 
   return (
     <PayloadRichText
       converters={jsxConvertersWithProps}
       className={cn(
-        'payload-richtext',
+        "payload-richtext",
         {
           container: enableGutter,
-          'max-w-none': !enableGutter,
-          'mx-auto prose md:prose-md': enableProse,
+          "max-w-none": !enableGutter,
+          "mx-auto prose md:prose-md": enableProse,
         },
         className,
       )}

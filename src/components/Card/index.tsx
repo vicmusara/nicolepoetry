@@ -1,34 +1,31 @@
-'use client'
+"use client"
 
-import { cn } from '@/utilities/ui'
-import useClickableCard from '@/utilities/useClickableCard'
-import Link from 'next/link'
-import React from 'react'
-import type { Story, Media as MediaType } from '@/payload-types'
-import { Media } from '@/components/Media'
-import { Badge } from '@/components/ui/badge'
+import { cn } from "@/utilities/ui"
+import useClickableCard from "@/utilities/useClickableCard"
+import Link from "next/link"
+import type React from "react"
+import type { Story, Media as MediaType } from "@/payload-types"
+import { Media } from "@/components/Media"
+import { Badge } from "@/components/ui/badge"
 
-export type CardStoryData = Pick<
-  Story,
-  'slug' | 'categories' | 'meta' | 'title' | 'createdAt' | 'populatedAuthors'
-> & {
-  authors?: Story['authors']
+export type CardStoryData = Pick<Story, "slug" | "categories" | "meta" | "title" | "createdAt" | "populatedAuthors"> & {
+  authors?: Story["authors"]
   populatedAuthors?:
     | {
-        id?: string | null
-        name?: string | null
-        avatar?: string | MediaType | null
-      }[]
+    id?: string | null
+    name?: string | null
+    avatar?: string | MediaType | null
+  }[]
     | null
 }
 
 export const Card: React.FC<{
   className?: string
   doc?: CardStoryData
-  relationTo?: 'stories'
+  relationTo?: "stories"
   showCategories?: boolean
-  variant?: 'default' | 'compact'
-}> = ({ className, doc, relationTo = 'stories', variant = 'default' }) => {
+  variant?: "default" | "compact"
+}> = ({ className, doc, relationTo = "stories", variant = "default" }) => {
   const { card, link } = useClickableCard({})
 
   if (!doc) return null
@@ -36,38 +33,59 @@ export const Card: React.FC<{
   const { slug, title, meta, categories, createdAt, populatedAuthors } = doc
 
   const href = `/${relationTo}/${slug}`
-  const description = meta?.description || ''
+  const description = meta?.description || ""
   const date = createdAt
-    ? new Date(createdAt).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    : ''
-  const mainImage = meta?.image as MediaType
+    ? new Date(createdAt).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+    : ""
+
+  // Ensure mainImage has width and height, provide fallbacks if missing
+  const mainImage = (
+    meta?.image
+      ? {
+        ...(meta.image as MediaType),
+        width: (meta.image as MediaType).width || 500, // Fallback width
+        height: (meta.image as MediaType).height || 600, // Fallback height (5/6 aspect ratio)
+      }
+      : null
+  ) as MediaType | null
 
   const categoryTitle =
-    categories &&
-    Array.isArray(categories) &&
-    categories.length > 0 &&
-    typeof categories[0] === 'object'
+    categories && Array.isArray(categories) && categories.length > 0 && typeof categories[0] === "object"
       ? categories[0]?.title
-      : 'Uncategorized'
+      : "Uncategorized"
 
   const hasAuthors = populatedAuthors && populatedAuthors.length > 0
   const firstAuthor = hasAuthors ? populatedAuthors[0] : null
+
+  // Prepare the author's avatar for the Media component, ensuring width and height
+  const authorAvatarResource: MediaType | undefined =
+    firstAuthor?.avatar && typeof firstAuthor.avatar === "string"
+      ? {
+        id: "temp-avatar", // Dummy ID
+        alt: firstAuthor.name || "Author",
+        url: firstAuthor.avatar,
+        createdAt: new Date().toISOString(), // Dummy date
+        updatedAt: new Date().toISOString(), // Dummy date
+        width: 40, // Explicit width for avatar
+        height: 40, // Explicit height for avatar
+      }
+      : undefined
 
   return (
     <article
       ref={card.ref}
       className={cn(
-        'group border border-x-0 border-b-0 pt-16 border-t-border flex flex-col' +
-          ' md:flex-row' +
-          ' gap-4' +
-          ' md:gap-6' +
-          ' mx-auto ',
-        variant === 'compact' ? 'max-w-lg' : 'max-w-3xl',
-        'hover:bg-accent/10 transition-colors',
+        "group border border-x-0 border-b-0 pt-16 border-t-border flex flex-col" +
+        " md:flex-row" +
+        " gap-4" +
+        " md:gap-6" +
+        " mx-auto ",
+        variant === "compact" ? "max-w-lg" : "max-w-3xl",
+        "hover:bg-accent/10 transition-colors",
         className,
       )}
     >
@@ -75,19 +93,15 @@ export const Card: React.FC<{
       <Link
         href={href}
         ref={link.ref}
-        className={cn(
-          'w-full md:w-60 flex-shrink-0 overflow-hidden rounded-lg',
-          variant === 'compact' && 'md:w-40',
-        )}
+        className={cn("w-full md:w-60 flex-shrink-0 overflow-hidden rounded-lg", variant === "compact" && "md:w-40")}
       >
         {mainImage ? (
           <Media
             resource={mainImage}
             alt={mainImage.alt || title}
             imgClassName={cn(
-              'aspect-[5/6] w-full object-cover transition-transform duration-300' +
-                ' group-hover:scale-105',
-              variant === 'compact' && 'aspect-[3.7/4]',
+              "aspect-[5/6] w-full object-cover transition-transform duration-300" + " group-hover:scale-105",
+              variant === "compact" && "aspect-[3.7/4]",
             )}
           />
         ) : (
@@ -106,45 +120,51 @@ export const Card: React.FC<{
         </div>
 
         {/* Title and description */}
-        <div className="flex-1 min-h-0">
+        <Link href={href} ref={link.ref} className="flex-1 min-h-0">
           <h3
             className={cn(
-              'font-semibold leading-tight text-foreground mb-3 transition-colors group-hover:text-accent',
-              variant === 'compact' ? 'text-lg' : 'text-xl',
+              "font-semibold leading-tight text-foreground mb-3 transition-colors group-hover:text-accent",
+              variant === "compact" ? "text-lg" : "text-xl",
             )}
           >
-            <Link href={href} ref={link.ref} className="relative block">
+            <div className="relative block">
               <span className="absolute inset-0" />
               {title}
-            </Link>
+            </div>
           </h3>
           <p
             className={cn(
-              'text-muted-foreground leading-relaxed transition-colors group-hover:text-foreground mb-4',
-              variant === 'compact' ? 'text-xs' : 'text-sm',
+              "text-muted-foreground leading-relaxed transition-colors group-hover:text-foreground mb-4",
+              variant === "compact" ? "text-xs" : "text-sm",
             )}
           >
             {description}
           </p>
-        </div>
+        </Link>
 
         <hr className="border-border my-4" />
 
         {/* Author */}
         {hasAuthors && firstAuthor && (
           <div className="flex items-center gap-x-4">
-            <Media
-              resource={firstAuthor.avatar}
-              alt={firstAuthor.name || 'Author'}
-              imgClassName={cn(
-                'h-10 w-10 rounded-full object-cover',
-                variant === 'compact' && 'h-8 w-8',
-              )}
-            />
-            <div className={cn('leading-6', variant === 'compact' ? 'text-xs' : 'text-sm')}>
-              <p className="font-semibold text-foreground">
-                {firstAuthor.name || 'Unknown Author'}
-              </p>
+            {authorAvatarResource ? (
+              <Media
+                resource={authorAvatarResource}
+                alt={firstAuthor.name || "Author"}
+                imgClassName={cn("h-10 w-10 rounded-full object-cover", variant === "compact" && "h-8 w-8")}
+              />
+            ) : (
+              <div
+                className={cn(
+                  "h-10 w-10 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground",
+                  variant === "compact" && "h-8 w-8",
+                )}
+              >
+                {firstAuthor.name ? firstAuthor.name.charAt(0).toUpperCase() : "A"}
+              </div>
+            )}
+            <div className={cn("leading-6", variant === "compact" ? "text-xs" : "text-sm")}>
+              <p className="font-semibold text-foreground">{firstAuthor.name || "Unknown Author"}</p>
             </div>
           </div>
         )}

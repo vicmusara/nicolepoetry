@@ -1,12 +1,12 @@
-import React from 'react'
+import type React from 'react'
 
-import type { Page } from '../../../../payload-template/src/payload-types'
+import type { Page } from '@/payload-types'
 
-import { CMSLink } from '../../../../payload-template/src/components/Link'
-import { Media } from '../../../../payload-template/src/components/Media'
-import RichText from '../../../../payload-template/src/components/RichText'
+import { CMSLink } from '@/components/Link'
+import { Media } from '@/components/Media'
+import RichText from '@/components/RichText'
 
-export const HeroC: React.FC<Page['hero']> = ({ links, media, richText }) => {
+export const MediumImpact: React.FC<Page['hero']> = ({ links, media, richText }) => {
   return (
     <div className="">
       <div className="container mb-8">
@@ -18,7 +18,7 @@ export const HeroC: React.FC<Page['hero']> = ({ links, media, richText }) => {
               return (
                 <li key={i}>
                   <CMSLink {...link} />
-                </li>
+          </li>
               )
             })}
           </ul>

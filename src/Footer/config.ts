@@ -45,7 +45,7 @@ export const Footer: GlobalConfig = {
           type: 'select',
           required: true,
           options: [
-            { label: 'Twitter', value: 'twitter' },
+            { label: 'TikTok', value: 'tiktok' },
             { label: 'YouTube', value: 'youtube' },
             { label: 'Facebook', value: 'facebook' },
             { label: 'Instagram', value: 'instagram' },

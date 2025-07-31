@@ -26,7 +26,10 @@ export const BookSigning: React.FC<BookSigningProps> = ({
             <p className="text-small font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4">
               {highlightText}
             </p>
-            {title && <Heading subtitle={title} />}
+            {title &&
+              <div className="text-foreground">
+                <Heading subtitle={title} />
+              </div>}
 
             <p className="text-body-large font-normal text-muted-foreground mb-8 leading-relaxed">
               {description}

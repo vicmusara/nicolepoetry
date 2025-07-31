@@ -10,7 +10,10 @@ export const BookTiles: React.FC<BookTilesProps> = ({ title, viewAllLink, books 
     <section id="books" className="py-0 mt-0 px-6 scroll-mt-20">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between md:items-center mb-12">
-          {title && <Heading subtitle={title} />}
+          {title &&
+            <div className="text-foreground">
+              <Heading subtitle={title} />
+            </div> }
           {viewAllLink && (
             <Link
               href={viewAllLink}

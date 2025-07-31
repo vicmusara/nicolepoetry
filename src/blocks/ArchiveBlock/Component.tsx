@@ -1,110 +1,65 @@
-import type { ArchiveBlock as ArchiveBlockProps, Story } from '@/payload-types'
+import type { ArchiveBlock as ArchiveBlockProps, Story } from "@/payload-types" // Import Story and Category types
+import type { CardStoryData } from "@/components/Card" // Import CardStoryData type
 
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import React from 'react'
-import RichText from '@/components/RichText'
+import configPromise from "@payload-config"
+import { getPayload } from "payload"
+import type React from "react"
+import RichText from "@/components/RichText"
 
-import { CollectionArchive } from '@/components/CollectionArchive'
-import { CardStoryData } from '@/components/Card'
-
-// Helper function to populate authors manually
-const populateAuthorsForStories = (stories: any[]): any[] => {
-  return stories.map((story) => {
-    if (story.authors && story.authors.length > 0) {
-      const populatedAuthors: { id: string; name: string; avatar?: string | any }[] = []
-
-      for (const author of story.authors) {
-        try {
-          if (typeof author === 'object' && author !== null) {
-            const authorValue = author.value
-
-            // Check if it's a populated object or just an ID
-            if (typeof authorValue === 'object' && authorValue !== null && authorValue.id) {
-              // It's a populated object
-              if (authorValue.name) {
-                populatedAuthors.push({
-                  id: authorValue.id,
-                  name: authorValue.name,
-                  avatar: authorValue.avatar, // Pass the full avatar object instead of just the URL
-                })
-              }
-            } else if (typeof authorValue === 'string') {
-              // It's just an ID - we can't fetch here in the frontend
-              // This will be handled by the populateAuthors hook on the backend
-            }
-          }
-        } catch (error) {
-          console.error('Error processing author:', error)
-        }
-      }
-
-      if (populatedAuthors.length > 0) {
-        return {
-          ...story,
-          populatedAuthors,
-        }
-      }
-    }
-
-    return story
-  })
-}
+import { CollectionArchive } from "@/components/CollectionArchive"
 
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {
-    id?: string
-  }
+  id?: string
+}
 > = async (props) => {
   const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
 
   const limit = limitFromProps || 3
 
-  let stories: any[] = []
+  let stories: CardStoryData[] = [] // Explicitly type stories as CardStoryData[]
 
-  if (populateBy === 'collection') {
+  if (populateBy === "collection") {
     const payload = await getPayload({ config: configPromise })
 
-    const flattenedCategories = categories?.map((category) => {
-      if (typeof category === 'object') return category.id
-      else return category
-    })
+    // Flatten categories to get an array of IDs for the 'in' query
+    const flattenedCategories = categories
+      ?.map((category) => {
+        if (typeof category === "object" && category !== null) return category.id
+        return category // If it's already a string ID
+      })
+      .filter(Boolean) as string[] // Ensure it's an array of strings
 
     const fetchedStories = await payload.find({
-      collection: 'stories',
-      depth: 1,
+      collection: "stories",
+      depth: 3, // Ensure categories, authors, and their avatars are populated
       limit,
       overrideAccess: true, // Bypass access control to get author data
-      select: {
-        title: true,
-        slug: true,
-        categories: true,
-        populatedAuthors: true, // Use populatedAuthors from backend hook
-        meta: {
-          image: true,
-          description: true,
-        },
-        createdAt: true,
-        authors: true, // Include authors to populate manually
-      },
+      // No need to manually select fields if depth is sufficient for CardStoryData
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
-            where: {
-              categories: {
-                in: flattenedCategories,
-              },
+          where: {
+            categories: {
+              in: flattenedCategories,
             },
-          }
+          },
+        }
         : {}),
     })
 
-    stories = populateAuthorsForStories(fetchedStories.docs)
+    // Cast directly to CardStoryData[] as Payload should populate correctly with depth: 3
+    stories = fetchedStories.docs as CardStoryData[]
   } else {
     if (selectedDocs?.length) {
-      stories = selectedDocs.map((story) => {
-        if (typeof story.value === 'object') return story.value
-      }) as any[]
-      stories = populateAuthorsForStories(stories)
+      // Filter selectedDocs to ensure only populated Story objects are included
+      stories = selectedDocs
+        .map((doc) => {
+          if (typeof doc.value === "object" && doc.value !== null && "id" in doc.value) {
+            return doc.value as Story // Cast to Story
+          }
+          return null
+        })
+        .filter(Boolean) as CardStoryData[] // Filter out nulls and cast to CardStoryData[]
     }
   }
 
