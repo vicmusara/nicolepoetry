@@ -106,6 +106,7 @@ export const FormBlock: React.FC<
           }
 
           if (!response) {
+            // noinspection ExceptionCaughtLocallyJS
             throw new Error("No valid endpoint found")
           }
 

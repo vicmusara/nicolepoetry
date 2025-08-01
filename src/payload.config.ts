@@ -44,6 +44,11 @@ export default buildConfig({
         Logo: '/components/payload/Logo#Logo',
         Icon: '/components/payload/Icon#Icon',
       },
+
+    },
+    avatar: {
+      Component: {
+        path: '/components/payload/Avatar#Avatar',}
     },
     user: Users.slug,
     livePreview: {

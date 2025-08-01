@@ -16,8 +16,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <title>@nicolepoetry</title>
       </head>
       <body className="font-[Arial,Helvetica,sans-serif]">

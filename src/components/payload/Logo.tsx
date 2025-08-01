@@ -1,7 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import logo from '@/assets/admin-logo.png';
 
 export const Logo = () => (
-  <Image src={logo} alt="Admin Logo" width={150} height={50} />
+  <Image
+    src="/android-chrome-512x512.png"
+    alt="Admin Icon"
+    width={300}
+    height={300}
+  />
 );

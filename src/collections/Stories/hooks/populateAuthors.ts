@@ -30,7 +30,6 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
                 name: authorValue.name,
                 avatar: avatarUrl,
               })
-              continue
             }
           } else if (typeof authorValue === 'string') {
             // It's just an ID, we need to fetch the author data

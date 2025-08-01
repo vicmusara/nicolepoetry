@@ -21,6 +21,7 @@ import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { RowLabel as RowLabel_ec255a65fa6fa8d1faeb09cf35284224 } from '@/Header/RowLabel'
+import { Avatar as Avatar_1b8f2c39ff1940210ad42c0c95820410 } from '../../../components/payload/Avatar'
 import { Icon as Icon_6f64da3861999de587a3ed586829047d } from '../../../components/payload/Icon'
 import { Logo as Logo_c6fe5946efe4ec376b0411c30a8f0d79 } from '../../../components/payload/Logo'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
@@ -49,6 +50,7 @@ export const importMap = {
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "@/Header/RowLabel#RowLabel": RowLabel_ec255a65fa6fa8d1faeb09cf35284224,
+  "/components/payload/Avatar#Avatar": Avatar_1b8f2c39ff1940210ad42c0c95820410,
   "/components/payload/Icon#Icon": Icon_6f64da3861999de587a3ed586829047d,
   "/components/payload/Logo#Logo": Logo_c6fe5946efe4ec376b0411c30a8f0d79,
   "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24

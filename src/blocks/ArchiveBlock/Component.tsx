@@ -1,5 +1,5 @@
-import type { ArchiveBlock as ArchiveBlockProps, Story } from "@/payload-types" // Import Story and Category types
-import type { CardStoryData } from "@/components/Card" // Import CardStoryData type
+import type { ArchiveBlock as ArchiveBlockProps, Story } from "@/payload-types"
+import type { CardStoryData } from "@/components/Card"
 
 import configPromise from "@payload-config"
 import { getPayload } from "payload"
