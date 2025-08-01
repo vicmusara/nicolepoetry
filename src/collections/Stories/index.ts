@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload"
 
 import {
   BlocksFeature,
@@ -7,17 +7,19 @@ import {
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from "@payloadcms/richtext-lexical"
 
-import { authenticated } from '@/access/authenticated'
-import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
-import { Banner } from '@/blocks/Banner/config'
-import { Code } from '@/blocks/Code/config'
-import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { RelatedStories } from '@/blocks/RelatedStories/config'
-import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-import { populateAuthors } from './hooks/populateAuthors'
-import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
+import { authenticated } from "@/access/authenticated"
+import { authenticatedOrPublished } from "@/access/authenticatedOrPublished"
+import { isAdmin } from "@/access/isAdmin"
+import { canManageOwnStories } from "@/access/canManageOwnStories"
+import { Banner } from "@/blocks/Banner/config"
+import { Code } from "@/blocks/Code/config"
+import { MediaBlock } from "@/blocks/MediaBlock/config"
+import { RelatedStories } from "@/blocks/RelatedStories/config"
+import { generatePreviewPath } from "@/utilities/generatePreviewPath"
+import { populateAuthors } from "./hooks/populateAuthors"
+import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost"
 
 import {
   MetaDescriptionField,
@@ -25,16 +27,17 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
-import { slugField } from '@/fields/slug'
+} from "@payloadcms/plugin-seo/fields"
+import { slugField } from "@/fields/slug"
+import { populateAuthor } from "./hooks/populateAuthor"
 
-export const Stories: CollectionConfig<'stories'> = {
-  slug: 'stories',
+export const Stories: CollectionConfig<"stories"> = {
+  slug: "stories",
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: authenticatedOrPublished,
-    update: authenticated,
+    create: authenticated, // Anyone authenticated can create
+    read: authenticatedOrPublished, // Public can read published, authenticated can read all
+    update: canManageOwnStories, // Editors can update their own, super-admins can update all
+    delete: isAdmin, // Only super-admins can delete
   },
   // This config controls what's populated by default when a story is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
@@ -50,48 +53,48 @@ export const Stories: CollectionConfig<'stories'> = {
     },
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ["title", "slug", "updatedAt", "author"],
     livePreview: {
       url: ({ data, req }) => {
         return generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'stories',
+          slug: typeof data?.slug === "string" ? data.slug : "",
+          collection: "stories",
           req,
         })
       },
     },
     preview: (data, { req }) =>
       generatePreviewPath({
-        slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'stories',
+        slug: typeof data?.slug === "string" ? data.slug : "",
+        collection: "stories",
         req,
       }),
-    useAsTitle: 'title',
+    useAsTitle: "title",
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
     },
     {
-      type: 'tabs',
+      type: "tabs",
       tabs: [
         {
           fields: [
             {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
+              name: "heroImage",
+              type: "upload",
+              relationTo: "media",
             },
             {
-              name: 'content',
-              type: 'richText',
+              name: "content",
+              type: "richText",
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
                   return [
                     ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+                    HeadingFeature({ enabledHeadingSizes: ["h1", "h2", "h3", "h4"] }),
                     BlocksFeature({ blocks: [Banner, Code, MediaBlock, RelatedStories] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
@@ -103,15 +106,15 @@ export const Stories: CollectionConfig<'stories'> = {
               required: true,
             },
           ],
-          label: 'Content',
+          label: "Content",
         },
         {
           fields: [
             {
-              name: 'relatedStories',
-              type: 'relationship',
+              name: "relatedStories",
+              type: "relationship",
               admin: {
-                position: 'sidebar',
+                position: "sidebar",
               },
               filterOptions: ({ id }) => {
                 return {
@@ -121,34 +124,34 @@ export const Stories: CollectionConfig<'stories'> = {
                 }
               },
               hasMany: true,
-              relationTo: 'stories',
+              relationTo: "stories",
             },
             {
-              name: 'categories',
-              type: 'relationship',
+              name: "categories",
+              type: "relationship",
               admin: {
-                position: 'sidebar',
+                position: "sidebar",
               },
               hasMany: true,
-              relationTo: 'categories',
+              relationTo: "categories",
             },
           ],
-          label: 'Meta',
+          label: "Meta",
         },
         {
-          name: 'meta',
-          label: 'SEO',
+          name: "meta",
+          label: "SEO",
           fields: [
             OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
+              imagePath: "meta.image",
             }),
             MetaTitleField({
               hasGenerateFn: true,
             }),
             MetaImageField({
-              relationTo: 'media',
+              relationTo: "media",
             }),
 
             MetaDescriptionField({}),
@@ -157,26 +160,26 @@ export const Stories: CollectionConfig<'stories'> = {
               hasGenerateFn: true,
 
               // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
             }),
           ],
         },
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
+      name: "publishedAt",
+      type: "date",
       admin: {
         date: {
-          pickerAppearance: 'dayAndTime',
+          pickerAppearance: "dayAndTime",
         },
-        position: 'sidebar',
+        position: "sidebar",
       },
       hooks: {
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
+            if (siblingData._status === "published" && !value) {
               return new Date()
             }
             return value
@@ -185,13 +188,28 @@ export const Stories: CollectionConfig<'stories'> = {
       },
     },
     {
-      name: 'authors',
-      type: 'relationship',
+      name: "authors",
+      type: "relationship",
       hasMany: true,
-      relationTo: ['users', 'writers'],
+      relationTo: ["users"], // Changed from ['users', 'writers']
       required: false,
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
+      },
+    },
+    {
+      name: "author",
+      type: "relationship",
+      relationTo: "users",
+      required: true,
+      defaultValue: ({ user }) => user?.id, // Automatically set the author to the current user
+      admin: {
+        position: "sidebar",
+        readOnly: true, // Prevent manual changes to author
+        hidden: true, // Hide from admin UI
+      },
+      hooks: {
+        beforeChange: [populateAuthor],
       },
     },
 
@@ -199,8 +217,8 @@ export const Stories: CollectionConfig<'stories'> = {
     // This is because the `user` collection has access control locked to protect user privacy
     // GraphQL will also not return mutated user data that differs from the underlying schema
     {
-      name: 'populatedAuthors',
-      type: 'array',
+      name: "populatedAuthors",
+      type: "array",
       access: {
         update: () => false,
       },
@@ -210,16 +228,16 @@ export const Stories: CollectionConfig<'stories'> = {
       },
       fields: [
         {
-          name: 'id',
-          type: 'text',
+          name: "id",
+          type: "text",
         },
         {
-          name: 'name',
-          type: 'text',
+          name: "name",
+          type: "text",
         },
         {
-          name: 'avatar',
-          type: 'text',
+          name: "avatar",
+          type: "text",
         },
       ],
     },

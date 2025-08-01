@@ -47,7 +47,7 @@ src/
 │   └── Testimonials/
 ├── collections/            # Payload CMS collections
 │   ├── Categories.ts
-│   ├── Media.ts
+│   ├── index.ts
 │   ├── Pages/
 │   ├── Stories/
 │   └── Users.ts

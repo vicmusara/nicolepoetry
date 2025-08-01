@@ -1,5 +1,5 @@
-import type { CollectionAfterReadHook } from 'payload'
-import { User, Writer } from '@/payload-types'
+import type { CollectionAfterReadHook } from "payload"
+import type { User } from "@/payload-types" // Removed Writer import
 
 // The `user` collection has access control locked so that users are not publicly accessible
 // This means that we need to populate the authors manually here to protect user privacy
@@ -11,19 +11,17 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
 
     for (const author of doc.authors) {
       try {
-        let authorData: User | Writer | null = null
+        let authorData: User | null = null // Changed type to only User
 
         // Check if author.value is a populated object or just an ID
-        if (typeof author === 'object' && author !== null) {
+        if (typeof author === "object" && author !== null) {
           const authorValue = author.value
 
-          if (typeof authorValue === 'object' && authorValue !== null && authorValue.id) {
+          if (typeof authorValue === "object" && authorValue !== null && authorValue.id) {
             // It's a populated object
             if (authorValue.name) {
               const avatarUrl =
-                authorValue.avatar && typeof authorValue.avatar === 'object'
-                  ? authorValue.avatar.url
-                  : undefined
+                authorValue.avatar && typeof authorValue.avatar === "object" ? authorValue.avatar.url : undefined
 
               populatedAuthors.push({
                 id: authorValue.id,
@@ -31,21 +29,15 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
                 avatar: avatarUrl,
               })
             }
-          } else if (typeof authorValue === 'string') {
+          } else if (typeof authorValue === "string") {
             // It's just an ID, we need to fetch the author data
             const authorId = authorValue
             const relationTo = author.relationTo
 
-            if (relationTo === 'users') {
+            if (relationTo === "users") {
+              // Removed 'writers' check
               authorData = await payload.findByID({
-                collection: 'users',
-                id: authorId,
-                depth: 1, // Populate the avatar relationship
-                overrideAccess: true, // Bypass access control
-              })
-            } else if (relationTo === 'writers') {
-              authorData = await payload.findByID({
-                collection: 'writers',
+                collection: "users",
                 id: authorId,
                 depth: 1, // Populate the avatar relationship
                 overrideAccess: true, // Bypass access control
@@ -54,7 +46,7 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
 
             if (authorData && authorData.name) {
               const avatarUrl =
-                authorData.avatar && typeof authorData.avatar === 'object'
+                authorData.avatar && typeof authorData.avatar === "object"
                   ? authorData.avatar.url || undefined
                   : undefined
 
@@ -67,7 +59,7 @@ export const populateAuthors: CollectionAfterReadHook = async ({ doc, req: { pay
           }
         }
       } catch (error) {
-        console.error('Error processing author:', error)
+        console.error("Error processing author:", error)
       }
     }
 

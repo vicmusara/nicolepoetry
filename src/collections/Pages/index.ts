@@ -1,22 +1,21 @@
-import type { CollectionConfig } from 'payload'
-
-import { authenticated } from '@/access/authenticated'
-import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
-import { Archive } from '@/blocks/ArchiveBlock/config'
-import { CallToAction } from '@/blocks/CallToAction/config'
-import { Content } from '@/blocks/Content/config'
-import { BookTiles } from '@/blocks/BookTiles/config'
-import { FormBlock } from '@/blocks/Form/config'
-import { MediaBlock } from '@/blocks/MediaBlock/config'
-import { BookSigning } from '@/blocks/BooksSigning/config'
-import { Newsletter } from '@/blocks/Newsletter/config'
-import { AboutAuthor } from '@/blocks/AboutAuthor/config'
-import { Testimonials } from '@/blocks/Testimonials/config'
-import { hero } from '@/heros/config'
-import { slugField } from '@/fields/slug'
-import { populatePublishedAt } from '@/hooks/populatePublishedAt'
-import { generatePreviewPath } from '@/utilities/generatePreviewPath'
-import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import type { CollectionConfig } from "payload"
+import { authenticatedOrPublished } from "@/access/authenticatedOrPublished"
+import { isAdmin } from "@/access/isAdmin" // Ensure isAdmin is imported
+import { Archive } from "@/blocks/ArchiveBlock/config"
+import { CallToAction } from "@/blocks/CallToAction/config"
+import { Content } from "@/blocks/Content/config"
+import { BookTiles } from "@/blocks/BookTiles/config"
+import { FormBlock } from "@/blocks/Form/config"
+import { MediaBlock } from "@/blocks/MediaBlock/config"
+import { BookSigning } from "@/blocks/BooksSigning/config"
+import { Newsletter } from "@/blocks/Newsletter/config"
+import { AboutAuthor } from "@/blocks/AboutAuthor/config"
+import { Testimonials } from "@/blocks/Testimonials/config"
+import { hero } from "@/heros/config"
+import { slugField } from "@/fields/slug"
+import { populatePublishedAt } from "@/hooks/populatePublishedAt"
+import { generatePreviewPath } from "@/utilities/generatePreviewPath"
+import { revalidateDelete, revalidatePage } from "./hooks/revalidatePage"
 
 import {
   MetaDescriptionField,
@@ -24,64 +23,57 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from "@payloadcms/plugin-seo/fields"
 
-
-export const Pages: CollectionConfig<'pages'> = {
-  slug: 'pages',
+export const Pages: CollectionConfig<"pages"> = {
+  slug: "pages",
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: authenticatedOrPublished,
-    update: authenticated,
-  },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
-  defaultPopulate: {
-    title: true,
-    slug: true,
+    create: isAdmin, // Only super-admins can create pages
+    delete: isAdmin, // Only super-admins can delete pages
+    read: authenticatedOrPublished, // Public can read published, authenticated can read all
+    update: isAdmin, // Only super-admins can update pages
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ["title", "slug", "updatedAt"],
     livePreview: {
       url: ({ data, req }) => {
         return generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'pages',
+          slug: typeof data?.slug === "string" ? data.slug : "",
+          collection: "pages",
           req,
         })
       },
     },
     preview: (data, { req }) =>
       generatePreviewPath({
-        slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'pages',
+        slug: typeof data?.slug === "string" ? data.slug : "",
+        collection: "pages",
         req,
       }),
-    useAsTitle: 'title',
+    useAsTitle: "title",
+    hidden: ({ user }) => user?.roles === "editor", // Hide from editors
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
       admin: {
-        description: 'This is the title of the page.',
+        description: "This is the title of the page.",
       },
     },
     {
-      type: 'tabs',
+      type: "tabs",
       tabs: [
         {
           fields: [hero],
-          label: 'Hero',
+          label: "Hero",
         },
         {
           fields: [
             {
-              name: 'layout',
-              type: 'blocks',
+              name: "layout",
+              type: "blocks",
               blocks: [
                 CallToAction,
                 Content,
@@ -92,7 +84,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 BookSigning,
                 AboutAuthor,
                 Testimonials,
-                Newsletter
+                Newsletter,
               ],
               required: true,
               admin: {
@@ -100,22 +92,22 @@ export const Pages: CollectionConfig<'pages'> = {
               },
             },
           ],
-          label: 'Content',
+          label: "Content",
         },
         {
-          name: 'meta',
-          label: 'SEO',
+          name: "meta",
+          label: "SEO",
           fields: [
             OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
+              imagePath: "meta.image",
             }),
             MetaTitleField({
               hasGenerateFn: true,
             }),
             MetaImageField({
-              relationTo: 'media',
+              relationTo: "media",
             }),
 
             MetaDescriptionField({}),
@@ -124,18 +116,18 @@ export const Pages: CollectionConfig<'pages'> = {
               hasGenerateFn: true,
 
               // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
             }),
           ],
         },
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
+      name: "publishedAt",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     ...slugField(),

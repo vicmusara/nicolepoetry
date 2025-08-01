@@ -64,7 +64,6 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
-    writers: WriterAuthOperations;
   };
   blocks: {};
   collections: {
@@ -73,7 +72,6 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    writers: Writer;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,7 +88,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    writers: WritersSelect<false> | WritersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -112,13 +109,9 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
-  user:
-    | (User & {
-        collection: 'users';
-      })
-    | (Writer & {
-        collection: 'writers';
-      });
+  user: User & {
+    collection: 'users';
+  };
   jobs: {
     tasks: {
       schedulePublish: TaskSchedulePublish;
@@ -131,24 +124,6 @@ export interface Config {
   };
 }
 export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
-  };
-}
-export interface WriterAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -317,17 +292,12 @@ export interface Story {
   };
   publishedAt?: string | null;
   authors?:
-    | (
-        | {
-            relationTo: 'users';
-            value: string | User;
-          }
-        | {
-            relationTo: 'writers';
-            value: string | Writer;
-          }
-      )[]
+    | {
+        relationTo: 'users';
+        value: string | User;
+      }[]
     | null;
+  author: string | User;
   populatedAuthors?:
     | {
         id?: string | null;
@@ -363,6 +333,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  uploadedBy: string | User;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -435,6 +406,33 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  name: string;
+  avatar?: (string | null) | Media;
+  roles: 'super-admin' | 'editor';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -453,58 +451,6 @@ export interface Category {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  name: string;
-  avatar: string | Media;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "writers".
- */
-export interface Writer {
-  id: string;
-  name: string;
-  avatar: string | Media;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1236,10 +1182,6 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'writers';
-        value: string | Writer;
-      } | null)
-    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1260,15 +1202,10 @@ export interface PayloadLockedDocument {
         value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
-  user:
-    | {
-        relationTo: 'users';
-        value: string | User;
-      }
-    | {
-        relationTo: 'writers';
-        value: string | Writer;
-      };
+  user: {
+    relationTo: 'users';
+    value: string | User;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1278,15 +1215,10 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: string;
-  user:
-    | {
-        relationTo: 'users';
-        value: string | User;
-      }
-    | {
-        relationTo: 'writers';
-        value: string | Writer;
-      };
+  user: {
+    relationTo: 'users';
+    value: string | User;
+  };
   key?: string | null;
   value?:
     | {
@@ -1561,6 +1493,7 @@ export interface StoriesSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   authors?: T;
+  author?: T;
   populatedAuthors?:
     | T
     | {
@@ -1581,6 +1514,7 @@ export interface StoriesSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
+  uploadedBy?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1694,30 +1628,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   avatar?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "writers_select".
- */
-export interface WritersSelect<T extends boolean = true> {
-  name?: T;
-  avatar?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

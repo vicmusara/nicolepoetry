@@ -1,25 +1,23 @@
 // storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { mongooseAdapter } from "@payloadcms/db-mongodb"
+import { s3Storage } from "@payloadcms/storage-s3"
 
-import sharp from 'sharp' // sharp-import
-import path from 'path'
-import { buildConfig, PayloadRequest } from 'payload'
-import { fileURLToPath } from 'url'
+import sharp from "sharp" // sharp-import
+import path from "path"
+import { buildConfig, type PayloadRequest } from "payload"
+import { fileURLToPath } from "url"
 
-import { Categories } from './collections/Categories'
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Stories } from './collections/Stories'
-import { Users } from './collections/Users'
-import { Writers } from './collections/Writers'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
-import { plugins} from './plugins'
-import { defaultLexical } from '@/fields/defaultLexical'
-import { getServerSideURL } from './utilities/getURL'
-import { resendAdapter } from '@payloadcms/email-resend'
-
+import { Categories } from "./collections/Categories"
+import { Media } from "./collections/Media"
+import { Pages } from "./collections/Pages"
+import { Stories } from "./collections/Stories"
+import { Users } from "./collections/Users"
+import { plugins } from "./plugins"
+import { defaultLexical } from "@/fields/defaultLexical"
+import { getServerSideURL } from "./utilities/getURL"
+import { resendAdapter } from "@payloadcms/email-resend"
+import { Header } from '@/Header/config'
+import { Footer } from '@/Footer/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,46 +28,46 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      titleSuffix: ' – My App',
+      titleSuffix: " – @nicolepoetry",
       icons: [
-        { rel: 'icon', type: 'image/png', url: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', url: '/favicon-16x16.png' },
-        { rel: 'apple-touch-icon', type: 'image/png', url: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', url: '/android-chrome-192x192.png' },
-        { rel: 'icon', type: 'image/png', url: '/android-chrome-512x512.png' },
+        { rel: "icon", type: "image/png", url: "/favicon-32x32.png" },
+        { rel: "icon", type: "image/png", url: "/favicon-16x16.png" },
+        { rel: "apple-touch-icon", type: "image/png", url: "/apple-touch-icon.png" },
+        { rel: "icon", type: "image/png", url: "/android-chrome-192x192.png" },
+        { rel: "icon", type: "image/png", url: "/android-chrome-512x512.png" },
       ],
     },
     components: {
       graphics: {
-        Logo: '/components/payload/Logo#Logo',
-        Icon: '/components/payload/Icon#Icon',
+        Logo: "/components/payload/Logo#Logo",
+        Icon: "/components/payload/Icon#Icon",
       },
-
     },
     avatar: {
       Component: {
-        path: '/components/payload/Avatar#Avatar',}
+        path: "/components/payload/Avatar#Avatar",
+      },
     },
-    user: Users.slug,
+    user: "users", // Ensure this is set to 'users'
     livePreview: {
-      url: process.env.NEXT_PUBLIC_SERVER_URL || process.env.VERCEL_URL || '',
-      collections: ['pages'],
+      url: process.env.NEXT_PUBLIC_SERVER_URL || process.env.VERCEL_URL || "",
+      collections: ["pages"],
       breakpoints: [
         {
-          label: 'Mobile',
-          name: 'mobile',
+          label: "Mobile",
+          name: "mobile",
           width: 375,
           height: 667,
         },
         {
-          label: 'Tablet',
-          name: 'tablet',
+          label: "Tablet",
+          name: "tablet",
           width: 768,
           height: 1024,
         },
         {
-          label: 'Desktop',
-          name: 'desktop',
+          label: "Desktop",
+          name: "desktop",
           width: 1440,
           height: 900,
         },
@@ -79,14 +77,14 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+    url: process.env.DATABASE_URI || "",
   }),
   email: resendAdapter({
-    defaultFromAddress: 'nicole.k@nicolepoetry.com',
-    defaultFromName: 'Nicole. K',
-    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromAddress: "nicole.k@nicolepoetry.com",
+    defaultFromName: "Nicole. K",
+    apiKey: process.env.RESEND_API_KEY || "",
   }),
-  collections: [Pages, Stories, Media, Categories, Users, Writers],
+  collections: [Pages, Stories, Media, Categories, Users], // Removed Writers from here
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
@@ -97,21 +95,21 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: process.env.S3_BUCKET || '',
+      bucket: process.env.S3_BUCKET || "",
       config: {
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET || '',
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+          secretAccessKey: process.env.S3_SECRET || "",
         },
-        region: 'auto',
-        endpoint: process.env.S3_ENDPOINT || '',
+        region: "auto",
+        endpoint: process.env.S3_ENDPOINT || "",
       },
     }),
   ],
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || "",
   sharp,
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   jobs: {
     access: {
@@ -122,7 +120,7 @@ export default buildConfig({
         // If there is no logged in user, then check
         // for the Vercel Cron secret to be present as an
         // Authorization header:
-        const authHeader = req.headers.get('authorization')
+        const authHeader = req.headers.get("authorization")
         return authHeader === `Bearer ${process.env.CRON_SECRET}`
       },
     },

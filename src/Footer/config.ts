@@ -9,6 +9,9 @@ export const Footer: GlobalConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    hidden: ({ user }) => user?.roles === "editor", // Hide from editors
+  },
   fields: [
     {
       name: 'navItems',

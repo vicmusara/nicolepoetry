@@ -43,15 +43,15 @@ export const Card: React.FC<{
     : ""
 
   // Ensure mainImage has width and height, provide fallbacks if missing
-  const mainImage = (
-    meta?.image
-      ? {
+  // And ensure it's a fully populated Media object with 'uploadedBy'
+  const mainImage =
+    meta?.image && typeof meta.image === "object" && "uploadedBy" in meta.image
+      ? ({
         ...(meta.image as MediaType),
         width: (meta.image as MediaType).width || 500, // Fallback width
         height: (meta.image as MediaType).height || 600, // Fallback height (5/6 aspect ratio)
-      }
+      } as MediaType) // Cast to MediaType after ensuring uploadedBy is present
       : null
-  ) as MediaType | null
 
   const categoryTitle =
     categories && Array.isArray(categories) && categories.length > 0 && typeof categories[0] === "object"
@@ -62,6 +62,7 @@ export const Card: React.FC<{
   const firstAuthor = hasAuthors ? populatedAuthors[0] : null
 
   // Prepare the author's avatar for the Media component, ensuring width and height
+  // and including a dummy uploadedBy to satisfy the required field
   const authorAvatarResource: MediaType | undefined =
     firstAuthor?.avatar && typeof firstAuthor.avatar === "string"
       ? {
@@ -72,6 +73,7 @@ export const Card: React.FC<{
         updatedAt: new Date().toISOString(), // Dummy date
         width: 40, // Explicit width for avatar
         height: 40, // Explicit height for avatar
+        uploadedBy: "dummy-user-id", // Added to satisfy the required field
       }
       : undefined
 
